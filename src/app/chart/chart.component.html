@@ -1,0 +1,12 @@
+<h1>Chart One</h1>
+
+<div #canvas>
+  <div *ngFor="let item of channels">
+    {{item}}
+    <div (mousedown)="taskSelect(item, $event)" [ngStyle]="{ left: offset +'px'}" class="task">
+
+    </div>
+  </div>
+
+
+</div>
