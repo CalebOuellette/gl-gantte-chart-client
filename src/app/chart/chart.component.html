@@ -1,12 +1,10 @@
 <h1>Chart One</h1>
 
 <div #canvas>
-  <div *ngFor="let item of channels">
-    {{item}}
-    <div (mousedown)="taskSelect(item, $event)" [ngStyle]="{ left: offset +'px'}" class="task">
-
+  <div *ngFor="let item of channels" class="channel">
+    
+    <div (mousedown)="taskSelect(item, $event)" [ngStyle]="{ left: item.offset +'px', 'backgroundColor': item.color}" class="task">
+      {{item.id}}
     </div>
   </div>
-
-
 </div>

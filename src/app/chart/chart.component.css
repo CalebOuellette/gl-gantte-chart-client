@@ -3,4 +3,11 @@
     width: 300px;
     background-color: #F2994A;
     position: relative;    
+    
+}
+
+.channel{
+    border-top: solid #4E4E4E 1px;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }

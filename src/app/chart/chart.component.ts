@@ -7,8 +7,10 @@ import { Component, OnInit, HostListener } from '@angular/core';
 })
 export class ChartComponent implements OnInit {
 
-  private channels: Array<string> = ['a', 'b', 'c'];
+  private channels: Array<any> = [{id: 'a', offset: 200, color: "#F2C94C"}, {id: 'b', offset: 500, color: "#F2994A"}, {id: 'c', offset: 340, color: "#EB5757"}];
   private dragging: boolean = false;
+  private dragItem: any;
+
   private last: MouseEvent;
 
   private offset: number = 400;  
@@ -25,26 +27,27 @@ export class ChartComponent implements OnInit {
   @HostListener('mouseup')
   onMouseup(event: MouseEvent) {
     console.log("mouseup");
-    this.dragging = false;        
+    this.dragging = false;      
+    this.dragItem = null;  
   }
 
   @HostListener('mousemove', ['$event'])
   onMousemove(event: MouseEvent) {
     console.log("move");
     if (this.dragging) {
-      this.offset = this.offset + ( event.clientX - this.last.clientX);
+      this.dragItem.offset = this.dragItem.offset + ( event.clientX - this.last.clientX);
       this.last = event;
     }
   }
 
   @HostListener('mousedown', ['$event'])
-  onMousedown(event) {
-  //  this.dragging = true;
+  onMousedown(event) {  
    
   }
 
-  private taskSelect(task: string, event: MouseEvent) {
+  private taskSelect(task: any, event: MouseEvent) {
     console.log("select");
+    this.dragItem = task;
     this.dragging = true;
     this.last = event;
   }
