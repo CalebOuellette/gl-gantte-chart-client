@@ -7,8 +7,8 @@ export class PercentRoundPipe implements PipeTransform {
 
   transform(value: number, args?: any): any {
     var num: number;
-    if(value > 100){
-      num = 100;
+    if(value > 1){
+      num = 1;
     }
     else if(value < 0){
       num = 0;
