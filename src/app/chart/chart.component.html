@@ -1,10 +1,18 @@
 <h1>Chart One</h1>
 
-<div #canvas>
+<div>
+  <div class="now"  [ngStyle]="{ left: nowOffset + 'px' }" >
+    Now
+    <div id="verticalNowLine"></div>
+  </div>
+
   <div *ngFor="let item of channels" class="channel">
-    
-    <div (mousedown)="taskSelect(item, $event)" [ngStyle]="{ left: item.offset +'px', 'backgroundColor': item.color}" class="task">
-      {{item.id}}
+  <div class="info" [ngStyle]="{ width: (nowOffset - 5) + 'px' }">
+    Task {{item.id}}<br>
+  {{((115 - item.offset) / item.width)| percentRound | percent: '1.0-0' }} 
+  </div>  
+    <div (mousedown)="taskSelect(item, $event)" [ngStyle]="{ left: item.offset +'px', 'backgroundColor': item.color, 'width': item.width + 'px' }" class="task">
+      <br>         
     </div>
   </div>
 </div>

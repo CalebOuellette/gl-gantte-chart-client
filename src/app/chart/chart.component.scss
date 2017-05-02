@@ -1,0 +1,47 @@
+.task{
+    height: 40px;
+    width: 300px;
+    background-color: white;
+    position: relative;    
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.channel{
+    border-top: solid #4E4E4E 1px;
+    padding-bottom: 10px;
+    padding-top: 10px; 
+    
+}
+
+.now{                
+    position: relative;
+    display: inline;
+}
+
+#verticalNowLine{
+    position: absolute;
+    height: 70vh;
+    width: 4px;
+    background-color: white;    
+    z-index: 100;
+}
+
+
+h1{
+    margin: 30px;
+}
+
+.gl-chart{
+    overflow: hidden;
+}
+
+.info{    
+    text-align: right;
+    display: inline-block;
+    position: absolute;
+    z-index: 100;
+    padding-top: 5px;
+    padding-right: 5px;
+    user-select: none;
+}
