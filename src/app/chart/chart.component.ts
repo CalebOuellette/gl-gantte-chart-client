@@ -1,5 +1,13 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 
+
+export class Task{
+  public id: string
+  public  offset: number
+  public width: number 
+  public color: string
+}
+
 @Component({
   selector: 'gl-chart',
   templateUrl: './chart.component.html',
@@ -7,9 +15,9 @@ import { Component, OnInit, HostListener } from '@angular/core';
 })
 export class ChartComponent implements OnInit {
 
-  public channels: Array<any> = [{id: 'A', offset: 100,  width: 500, color: "#F2C94C"}, {id: 'B',  width: 200, offset: 50, color: "#F2994A"}, {id: 'C',  width: 300, offset: 120, color: "#EB5757"}];
+  public channels: Array<Task> = [{id: 'A', offset: 100,  width: 500, color: "#F2C94C"}, {id: 'B',  width: 200, offset: 50, color: "#F2994A"}, {id: 'C',  width: 300, offset: 120, color: "#EB5757"}];
   private dragging: boolean = false;
-  private dragItem: any;
+  private dragItem: Task;
 
   private last: MouseEvent;
 
@@ -42,11 +50,11 @@ export class ChartComponent implements OnInit {
   }
 
   @HostListener('mousedown', ['$event'])
-  onMousedown(event) {  
+  onMousedown(event: MouseEvent) {  
    
   }
 
-  private taskSelect(task: any, event: MouseEvent) {    
+  private taskSelect(task: Task, event: MouseEvent) {    
     this.dragItem = task;
     this.dragging = true;
     this.last = event;
