@@ -1,12 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-
-
-export class Task{
-  public id: string
-  public  offset: number
-  public width: number 
-  public color: string
-}
+import  { Task } from '../classes/task';
 
 @Component({
   selector: 'gl-chart',
@@ -15,7 +8,10 @@ export class Task{
 })
 export class ChartComponent implements OnInit {
 
-  public channels: Array<Task> = [{id: 'A', offset: 100,  width: 500, color: "#F2C94C"}, {id: 'B',  width: 200, offset: 50, color: "#F2994A"}, {id: 'C',  width: 300, offset: 120, color: "#EB5757"}];
+  public channels: Array<Task> = [
+    {id: 'A',   width: 500, offset: 100, color: "#F2C94C", startDate: new Date(), totalTime: 345600000},    
+    ];
+
   private dragging: boolean = false;
   private dragItem: Task;
 
@@ -25,9 +21,12 @@ export class ChartComponent implements OnInit {
   
   public nowOffset: number = 125;
 
+  public zoomScale: number = 1000000;
+
+  public nowDate: Date = new Date();
 
   constructor() {
-
+    this.channels[0].startDate = new Date(this.channels[0].startDate.setHours(this.channels[0].startDate.getHours() + 10));
   }
 
 
@@ -44,7 +43,7 @@ export class ChartComponent implements OnInit {
   @HostListener('mousemove', ['$event'])
   onMousemove(event: MouseEvent) {    
     if (this.dragging) {
-      this.dragItem.offset = this.dragItem.offset + ( event.clientX - this.last.clientX);
+      this.dragItem.totalTime = this.dragItem.totalTime + ((event.clientX - this.last.clientX) * this.zoomScale) ;
       this.last = event;
     }
   }
