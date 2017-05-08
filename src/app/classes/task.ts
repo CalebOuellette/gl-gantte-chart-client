@@ -1,9 +1,7 @@
 
 export class Task{
-  public id: string;
-  public  offset: number;
-  public width: number;
+  public id: string;  
   public color: string;
-  public startDate?: Date;
-  public totalTime?: number;
+  public startDate: Date;
+  public totalTime: number;
 }
