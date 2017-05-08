@@ -8,8 +8,15 @@ import  { Task } from '../classes/task';
 })
 export class ChartComponent implements OnInit {
 
+
+
+  public nowDate: Date = new Date();
+
+
   public channels: Array<Task> = [
-    {id: 'A',   width: 500, offset: 100, color: "#F2C94C", startDate: new Date(), totalTime: 345600000},    
+    {id: 'A', color: "#F2C94C", startDate: new Date(), totalTime: 345600000},    
+    {id: 'B', color: "#F2994A", startDate: new Date(), totalTime: 345600000},    
+    {id: 'C', color: "#EB5757", startDate: new Date(), totalTime: 345600000},    
     ];
 
   private dragging: boolean = false;
@@ -23,10 +30,10 @@ export class ChartComponent implements OnInit {
 
   public zoomScale: number = 1000000;
 
-  public nowDate: Date = new Date();
-
   constructor() {
-    this.channels[0].startDate = new Date(this.channels[0].startDate.setHours(this.channels[0].startDate.getHours() + 10));
+    this.channels[0].startDate.setHours(this.channels[0].startDate.getHours() + 10);
+    this.channels[1].startDate.setHours(this.channels[0].startDate.getHours() - 50);
+    this.channels[2].startDate.setHours(this.channels[0].startDate.getHours() - 90);
   }
 
 
@@ -57,6 +64,11 @@ export class ChartComponent implements OnInit {
     this.dragItem = task;
     this.dragging = true;
     this.last = event;
+  }
+
+
+  public addTask(channel: number){
+    
   }
 
 }

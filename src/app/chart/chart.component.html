@@ -8,11 +8,11 @@
 
   <div *ngFor="let item of channels" class="channel">
   <div class="info" [ngStyle]="{ width: (nowOffset - 5) + 'px' }">
-    Task {{item.id}}<br>
-  {{((item.startDate.getTime() - nowDate.getTime()) / item.totalTime)| percentRound | percent: '1.0-0' }}   
+    
   </div>  
     <div (mousedown)="taskSelect(item, $event)" [ngStyle]="{ left: (nowOffset + ((nowDate.getTime() - item.startDate.getTime()) / zoomScale) ) +'px', 'backgroundColor': item.color, 'width': (item.totalTime / zoomScale) + 'px' }" class="task">
-      <br>         
-    </div>
+                  Task {{item.id}}<br>
+  {{((item.startDate.getTime() - nowDate.getTime()) / item.totalTime)| percentRound | percent: '1.0-0' }}    
+    </div>    
   </div>
 </div>
