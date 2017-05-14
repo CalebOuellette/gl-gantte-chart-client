@@ -23,7 +23,7 @@
 
 
       </div>
-      <div  (mousedown)="addTask(channel)" class="addButton" [ngStyle]="{ left: (nowOffset + (  -1 * (nowDate.getTime() - channel.lastTask.startDate.getTime() - channel.lastTask.totalTime ) / zoomScale) ) +'px'}" >
+      <div  (mousedown)="addTask(channel)" class="addButton" [ngStyle]="{ left: ((nowOffset + (  -1 * (nowDate.getTime() - channel.lastTask.startDate.getTime() - channel.lastTask.totalTime ) / zoomScale) )+ 5) +'px'}" >
 
 
       </div>
