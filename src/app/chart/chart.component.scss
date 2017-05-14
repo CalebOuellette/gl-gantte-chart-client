@@ -5,6 +5,7 @@
     position: relative;    
     border-radius: 5px;
     padding: 5px;
+    display: flex; 
 }
 
 .channel{
@@ -44,4 +45,20 @@ h1{
     padding-top: 5px;
     padding-right: 5px;
     user-select: none;
+}
+
+.dragZone{
+    opacity: 0.5;
+    background-color: #4E4E4E;
+    display: inline-block;
+    width: 80%;
+    height: 100%;
+}
+
+.expandZone{
+    opacity: 0.5;
+    background-color: #FF6677;
+    display: inline-block;
+    width: 20%;
+    height: 100%;
 }
