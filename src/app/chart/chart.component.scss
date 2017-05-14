@@ -4,16 +4,20 @@ $taskHeight: 40px;
 .task{
     height: $taskHeight;
 
-    background-color: white;
+    background-color: #555;
     position: absolute;    
     border-radius: 5px;
     display: flex; 
+    border-width: 1px;
+    border-style: solid;
 }
 
 .addButton{
-    height: $taskHeight;
-    width: 20px;
-      background-color: white;
+    height: $taskHeight /2;
+    width: $taskHeight /2;
+       border-width: 1px;
+    border-style: solid;
+    border-color: white;
     position: absolute;  
      border-radius: 5px;
 }
@@ -25,10 +29,15 @@ $taskHeight: 40px;
     height: $taskHeight;
 }
 
+.percent{
+    color: #EEE;
+    font-size: .75em;
+}
+
+
 .now{                
-    position: absolute;
+    position: relative;
     display: inline-block;
-    height:  800px;
     z-index: 2;
 }
 
