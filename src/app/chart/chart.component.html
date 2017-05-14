@@ -8,10 +8,10 @@
 
   <div *ngFor="let channel of channels" class="channel">
     <div >
-      <div class="info" [ngStyle]="{ width: (nowOffset - 5) + 'px' }">
-        Task {{channel.tasks[0].id}} {{((channel.tasks[0].startDate.getTime() - nowDate.getTime()) / channel.tasks[0].totalTime)| percentRound | percent: '1.0-0' }}
+      <div class="info" *ngIf="channel.currentTask" [ngStyle]="{ width: (nowOffset - 5) + 'px' }">
+        Task {{channel.currentTask.id}} {{(( nowDate.getTime() - channel.currentTask.startDate.getTime() ) / channel.currentTask.totalTime)| percentRound | percent: '1.0-0' }}
       </div>
-      <div *ngFor="let item of channel.tasks" [ngStyle]="{ left: (nowOffset + ((nowDate.getTime() - item.startDate.getTime()) / zoomScale) ) +'px', 'backgroundColor': item.color, 'width': (item.totalTime / zoomScale) + 'px' }"
+      <div *ngFor="let item of channel.tasks" [ngStyle]="{ left: (nowOffset + (  -1 * (nowDate.getTime() - item.startDate.getTime()) / zoomScale) ) +'px', 'backgroundColor': item.color, 'width': (item.totalTime / zoomScale) + 'px' }"
         class="task">
         <div class="dragZone" (mousedown)="taskMove(item, $event)">
 

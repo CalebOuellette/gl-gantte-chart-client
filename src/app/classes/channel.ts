@@ -1,8 +1,50 @@
-import {Task} from "./task";
+import { Task } from "./task";
+import * as _ from 'underscore';
+
+export class Channel {
+    public tasks: Array<Task> = [];
+
+    public currentTask: Task;
 
 
-export class Channel{
-    public tasks:  Array<Task> ;
+    public adjustTaskTimes(adjustment: number, taskArray: Array<Task>) {
+        taskArray.forEach((t: Task) => {
+            t.startDate = new Date(t.startDate.getTime() + adjustment);
+        });
+    }
+
+    public adjustAllTaskTimes(adjustment: number) {
+        this.adjustTaskTimes(adjustment, this.tasks);
+        this.setCurrentTask();
+    }
+
+
+    public adjusTasksAfter(pivotTask: Task, adjustment: number) {
+        var taskArray = _.filter(this.tasks, (item: Task) => {
+            if (item.startDate > pivotTask.startDate) {
+                return true;
+            }
+        });
+        this.adjustTaskTimes(adjustment, taskArray);
+
+    }
+
+    public getCurrentTask(): Task {
+        return _.find(this.tasks, (item: Task) => {
+            if (item.startDate < new Date() && (item.startDate.getTime() + item.totalTime) > new Date().getTime()) {
+                return true;
+            }
+        });
+    }
+
+    public setCurrentTask() {
+        this.currentTask = this.getCurrentTask();
+    }
+
+    public addTask(t: Task){
+        this.tasks.push(t);
+        this.setCurrentTask();
+    }
 
 
 }

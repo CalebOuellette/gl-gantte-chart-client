@@ -40,19 +40,21 @@ export class ChartComponent implements OnInit {
   constructor() {
     var c = new Channel;
     c.tasks = [
-      { id: 'A', color: "#F2C94C", startDate: new Date(), totalTime: 345600000 },
-      { id: 'B', color: "#F2994A", startDate: new Date(), totalTime: 345600000 }
+      { id: 'A', color: "#F2C94C", startDate: new Date(), totalTime: 345600000, parentChannel: c },
+      { id: 'B', color: "#F2994A", startDate: new Date(), totalTime: 345600000, parentChannel: c }
     ];
+    c.setCurrentTask();
     this.channels.push(c);
       var c2 = new Channel;
 
       c2.tasks = [
-         { id: 'C', color: "#EB5757", startDate: new Date(), totalTime: 345600000 }
+         { id: 'C', color: "#EB5757", startDate: new Date(), totalTime: 345600000, parentChannel: c2 }
       ]
+       c2.setCurrentTask();
           this.channels.push(c2);
 
 
-    this.channels[0].tasks[1].startDate.setHours(this.channels[0].tasks[1].startDate.getHours() - 100);
+    this.channels[0].tasks[1].startDate.setHours(this.channels[0].tasks[1].startDate.getHours() + 100);
     
   }
 
@@ -73,10 +75,12 @@ export class ChartComponent implements OnInit {
     if (this.dragging && this.dragEventType) {
       if (this.dragEventType == 1) {
         this.dragItem.totalTime = this.dragItem.totalTime + ((event.clientX - this.last.clientX) * this.zoomScale);
+        this.dragItem.parentChannel.adjusTasksAfter(this.dragItem, ((event.clientX - this.last.clientX) * this.zoomScale));
         this.last = event;
       }
       else if (this.dragEventType == 2) {
-        this.dragItem.startDate = new Date(this.dragItem.startDate.getTime() - ((event.clientX - this.last.clientX) * this.zoomScale));
+       // this.dragItem.startDate = new Date(this.dragItem.startDate.getTime() - ((event.clientX - this.last.clientX) * this.zoomScale));
+        this.dragItem.parentChannel.adjustAllTaskTimes(((event.clientX - this.last.clientX) * this.zoomScale));
         this.last = event;
       }
     }
