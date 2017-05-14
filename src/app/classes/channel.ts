@@ -2,10 +2,16 @@ import { Task } from "./task";
 import * as _ from 'underscore';
 
 export class Channel {
+
+    constructor(){}
+
     public tasks: Array<Task> = [];
 
     public currentTask: Task;
 
+    public lastTask: Task;
+
+    public id: string;
 
     public adjustTaskTimes(adjustment: number, taskArray: Array<Task>) {
         taskArray.forEach((t: Task) => {
@@ -39,6 +45,7 @@ export class Channel {
 
     public setCurrentTask() {
         this.currentTask = this.getCurrentTask();
+        this.lastTask = this.tasks[this.tasks.length -1];
     }
 
     public addTask(t: Task){

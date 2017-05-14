@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Task } from '../classes/task';
 import { Channel } from '../classes/channel';
+import * as _ from 'underscore';
 
 @Component({
   selector: 'gl-chart',
@@ -11,42 +12,34 @@ export class ChartComponent implements OnInit {
 
 
 
-  public nowDate: Date = new Date();
+  public nowDate: Date = new Date(); //right now.
 
-  public channels: Array<Channel> = [];
+  public channels: Array<Channel> = []; //list of channels 
+
+  private dragging: boolean = false; //if there is something being dragged.
+  private dragItem: Task; //the item being dragged.
+
+  private last: MouseEvent; //last event to calc move distance
 
 
+  public nowOffset: number = 125; //offset of the now point.
 
-  public channelsB: Array<Task> = [
-    { id: 'A', color: "#F2C94C", startDate: new Date(), totalTime: 345600000 },
-    { id: 'B', color: "#F2994A", startDate: new Date(), totalTime: 345600000 },
-    { id: 'C', color: "#EB5757", startDate: new Date(), totalTime: 345600000 },
-  ];
+  public zoomScale: number = 1000000; //MS per Pixel
 
-  private dragging: boolean = false;
-  private dragItem: Task;
-
-  private last: MouseEvent;
-
-  private offset: number = 400;
-
-  public nowOffset: number = 125;
-
-  public zoomScale: number = 1000000;
-
-  public dragEventType: number = 0;
+  public dragEventType: number = 0; //TODO make an enum. this is the type of dragg happening. 
 
 
   constructor() {
-    var c = new Channel;
+    var c = new Channel();
     c.tasks = [
       { id: 'A', color: "#F2C94C", startDate: new Date(), totalTime: 345600000, parentChannel: c },
       { id: 'B', color: "#F2994A", startDate: new Date(), totalTime: 345600000, parentChannel: c }
     ];
+    c.id = "1234";
     c.setCurrentTask();
     this.channels.push(c);
-      var c2 = new Channel;
-
+      var c2 = new Channel();
+        c2.id = "12345";
       c2.tasks = [
          { id: 'C', color: "#EB5757", startDate: new Date(), totalTime: 345600000, parentChannel: c2 }
       ]
@@ -108,8 +101,13 @@ export class ChartComponent implements OnInit {
     this.dragEventType = 2;
   }
 
-  public addTask(channel: number) {
+  public addTask(channel: Channel) {
+    var date = channel.lastTask.startDate.getTime
 
+    var t: Task =   { id: 'D', color: "#005757", startDate: new Date(channel.lastTask.startDate.getTime() + channel.lastTask.totalTime), totalTime: 345600000, parentChannel: channel };
+
+
+    channel.addTask(t);
   }
 
 }

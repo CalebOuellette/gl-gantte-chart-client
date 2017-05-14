@@ -13,11 +13,17 @@
       </div>
       <div *ngFor="let item of channel.tasks" [ngStyle]="{ left: (nowOffset + (  -1 * (nowDate.getTime() - item.startDate.getTime()) / zoomScale) ) +'px', 'backgroundColor': item.color, 'width': (item.totalTime / zoomScale) + 'px' }"
         class="task">
-        <div class="dragZone" (mousedown)="taskMove(item, $event)">
+        <div  (mousedown)="taskMove(item, $event)" class="dragZone">
+          <div *ngIf="!channel.currentTask || channel.currentTask.id != item.id">
+             Task {{item.id}} {{(( nowDate.getTime() - item.startDate.getTime() ) / item.totalTime)| percentRound | percent: '1.0-0' }}
+          </div>
+        </div>
+        <div (mousedown)="taskExpand(item, $event)" class="expandZone" >
+        </div>
 
-        </div>
-        <div class="expandZone" (mousedown)="taskExpand(item, $event)">
-        </div>
+
+      </div>
+      <div  (mousedown)="addTask(channel)" class="addButton" [ngStyle]="{ left: (nowOffset + (  -1 * (nowDate.getTime() - channel.lastTask.startDate.getTime() - channel.lastTask.totalTime ) / zoomScale) ) +'px'}" >
 
 
       </div>
