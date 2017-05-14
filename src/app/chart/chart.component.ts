@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Task } from '../classes/task';
-
+import { Channel } from '../classes/channel';
 
 @Component({
   selector: 'gl-chart',
@@ -13,8 +13,11 @@ export class ChartComponent implements OnInit {
 
   public nowDate: Date = new Date();
 
+  public channels: Array<Channel> = [];
 
-  public channels: Array<Task> = [
+
+
+  public channelsB: Array<Task> = [
     { id: 'A', color: "#F2C94C", startDate: new Date(), totalTime: 345600000 },
     { id: 'B', color: "#F2994A", startDate: new Date(), totalTime: 345600000 },
     { id: 'C', color: "#EB5757", startDate: new Date(), totalTime: 345600000 },
@@ -35,9 +38,22 @@ export class ChartComponent implements OnInit {
 
 
   constructor() {
-    this.channels[0].startDate.setHours(this.channels[0].startDate.getHours() + 10);
-    this.channels[1].startDate.setHours(this.channels[0].startDate.getHours() - 50);
-    this.channels[2].startDate.setHours(this.channels[0].startDate.getHours() - 90);
+    var c = new Channel;
+    c.tasks = [
+      { id: 'A', color: "#F2C94C", startDate: new Date(), totalTime: 345600000 },
+      { id: 'B', color: "#F2994A", startDate: new Date(), totalTime: 345600000 }
+    ];
+    this.channels.push(c);
+      var c2 = new Channel;
+
+      c2.tasks = [
+         { id: 'C', color: "#EB5757", startDate: new Date(), totalTime: 345600000 }
+      ]
+          this.channels.push(c2);
+
+
+    this.channels[0].tasks[1].startDate.setHours(this.channels[0].tasks[1].startDate.getHours() - 100);
+    
   }
 
 
@@ -60,7 +76,7 @@ export class ChartComponent implements OnInit {
         this.last = event;
       }
       else if (this.dragEventType == 2) {
-        this.dragItem.startDate =new Date(this.dragItem.startDate.getTime() - ((event.clientX - this.last.clientX) * this.zoomScale));
+        this.dragItem.startDate = new Date(this.dragItem.startDate.getTime() - ((event.clientX - this.last.clientX) * this.zoomScale));
         this.last = event;
       }
     }

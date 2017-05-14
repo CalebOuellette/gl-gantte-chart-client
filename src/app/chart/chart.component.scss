@@ -2,7 +2,7 @@
     height: 40px;
     width: 300px;
     background-color: white;
-    position: relative;    
+    position: absolute;    
     border-radius: 5px;
     padding: 5px;
     display: flex; 
@@ -12,18 +12,21 @@
     border-top: solid #4E4E4E 1px;
     padding-bottom: 10px;
     padding-top: 10px; 
+    height: 50px;
     
 }
 
 .now{                
-    position: relative;
-    display: inline;
+    position: absolute;
+    display: inline-block;
+    height:  800px;
+    z-index: 2;
 }
 
 #verticalNowLine{
     position: absolute;
-    height: 70vh;
-    width: 4px;
+    height: 100%;
+    width: 2px;
     background-color: white;    
     z-index: 100;
 }
