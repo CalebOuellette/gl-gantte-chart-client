@@ -68,7 +68,13 @@ export class ChartComponent implements OnInit {
     if (this.dragging && this.dragEventType) {
       if (this.dragEventType == 1) {
         this.dragItem.totalTime = this.dragItem.totalTime + ((event.clientX - this.last.clientX) * this.zoomScale);
-        this.dragItem.parentChannel.adjusTasksAfter(this.dragItem, ((event.clientX - this.last.clientX) * this.zoomScale));
+        if(this.dragItem.totalTime < (this.zoomScale * 40)){
+          this.dragItem.totalTime = this.zoomScale * 40;
+        }else{
+          this.dragItem.parentChannel.adjusTasksAfter(this.dragItem, ((event.clientX - this.last.clientX) * this.zoomScale));
+        }
+
+        
         this.last = event;
       }
       else if (this.dragEventType == 2) {
