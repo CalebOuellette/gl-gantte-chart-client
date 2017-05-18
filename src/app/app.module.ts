@@ -6,17 +6,18 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ChartComponent } from './chart/chart.component';
 import { PercentRoundPipe } from './pipes/percent-round.pipe';
-
+import { GlPrimitivesModule } from '../gl-primitives/gl-primitives.module';
 @NgModule({
   declarations: [
     AppComponent,
     ChartComponent,
-    PercentRoundPipe
+    PercentRoundPipe,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    GlPrimitivesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
