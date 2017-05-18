@@ -116,4 +116,8 @@ export class ChartComponent implements OnInit {
     channel.addTask(t);
   }
 
+  public addChannel(channel: Channel){
+    this.channels.push(channel);
+  }
+
 }
