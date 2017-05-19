@@ -22,7 +22,7 @@ export class ChartComponent implements OnInit {
   private last: MouseEvent; //last event to calc move distance
 
 
-  public nowOffset: number = 125; //offset of the now point.
+  public nowOffset: number = 325; //offset of the now point.
 
   public zoomScale: number = 1000000; //MS per Pixel
 
@@ -31,6 +31,7 @@ export class ChartComponent implements OnInit {
 
   constructor() {
     var c = new Channel();
+    c.name = "Patch 1";
     c.tasks = [
       { id: 'A', color: "#F2C94C", startDate: new Date(), totalTime: 345600000, parentChannel: c },
       { id: 'B', color: "#F2994A", startDate: new Date(), totalTime: 345600000, parentChannel: c }
@@ -38,17 +39,18 @@ export class ChartComponent implements OnInit {
     c.id = "1234";
     c.setCurrentTask();
     this.channels.push(c);
-      var c2 = new Channel();
-        c2.id = "12345";
-      c2.tasks = [
-         { id: 'C', color: "#EB5757", startDate: new Date(), totalTime: 345600000, parentChannel: c2 }
-      ]
-       c2.setCurrentTask();
-          this.channels.push(c2);
+    var c2 = new Channel();
+    c2.id = "12345";
+    c2.name = "Feature 3"
+    c2.tasks = [
+      { id: 'C', color: "#EB5757", startDate: new Date(), totalTime: 345600000, parentChannel: c2 }
+    ]
+    c2.setCurrentTask();
+    this.channels.push(c2);
 
 
     this.channels[0].tasks[1].startDate.setHours(this.channels[0].tasks[1].startDate.getHours() + 100);
-    
+
   }
 
 
@@ -68,17 +70,17 @@ export class ChartComponent implements OnInit {
     if (this.dragging && this.dragEventType) {
       if (this.dragEventType == 1) {
         this.dragItem.totalTime = this.dragItem.totalTime + ((event.clientX - this.last.clientX) * this.zoomScale);
-        if(this.dragItem.totalTime < (this.zoomScale * 40)){
+        if (this.dragItem.totalTime < (this.zoomScale * 40)) {
           this.dragItem.totalTime = this.zoomScale * 40;
-        }else{
+        } else {
           this.dragItem.parentChannel.adjusTasksAfter(this.dragItem, ((event.clientX - this.last.clientX) * this.zoomScale));
         }
 
-        
+
         this.last = event;
       }
       else if (this.dragEventType == 2) {
-       // this.dragItem.startDate = new Date(this.dragItem.startDate.getTime() - ((event.clientX - this.last.clientX) * this.zoomScale));
+        // this.dragItem.startDate = new Date(this.dragItem.startDate.getTime() - ((event.clientX - this.last.clientX) * this.zoomScale));
         this.dragItem.parentChannel.adjustAllTaskTimes(((event.clientX - this.last.clientX) * this.zoomScale));
         this.last = event;
       }
@@ -109,10 +111,7 @@ export class ChartComponent implements OnInit {
 
   public addTask(channel: Channel) {
     var date = channel.lastTask.startDate.getTime
-
-    var t: Task =   { id: 'D', color: "#005757", startDate: new Date(channel.lastTask.startDate.getTime() + channel.lastTask.totalTime + 1), totalTime: 345600000, parentChannel: channel };
-
-
+    var t: Task = { id: 'D', color: "#005757", startDate: new Date(channel.lastTask.startDate.getTime() + channel.lastTask.totalTime + 1), totalTime: 345600000, parentChannel: channel };
     channel.addTask(t);
   }
 

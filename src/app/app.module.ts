@@ -6,12 +6,16 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ChartComponent } from './chart/chart.component';
 import { PercentRoundPipe } from './pipes/percent-round.pipe';
+import { TopbarComponent } from './topbar/topbar.component';
+import { ChartpageComponent } from './chartpage/chartpage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChartComponent,
-    PercentRoundPipe
+    PercentRoundPipe,
+    TopbarComponent,
+    ChartpageComponent
   ],
   imports: [
     BrowserModule,

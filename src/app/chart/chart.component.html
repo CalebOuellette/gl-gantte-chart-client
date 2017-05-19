@@ -1,5 +1,3 @@
-<h1>Chart One</h1>
-
 <div>
   <div class="now" [ngStyle]="{ left: nowOffset + 'px' }">
     Now
@@ -8,7 +6,10 @@
    <div id="verticalNowLine" [ngStyle]="{ left: nowOffset + 'px' }"></div>
 
   <div *ngFor="let channel of channels" class="channel">
-    <div >
+    <div id="channelName">
+      {{channel.name}}
+    </div>
+    <div>
       <div class="info" *ngIf="channel.currentTask" [ngStyle]="{ width: (nowOffset - 5) + 'px' }">
         Task {{channel.currentTask.id}}  <br>
           <span class="percent">{{(( nowDate.getTime() - channel.currentTask.startDate.getTime() ) / channel.currentTask.totalTime)| percentRound | percent: '1.0-0' }}</span>

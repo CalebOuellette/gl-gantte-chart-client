@@ -1,0 +1,12 @@
+$height: 60px;
+
+#padding{
+    height: $height;
+    width: 100%;
+}
+
+#content{
+      height: $height;
+      width: 100%;
+      position: fixed;
+}

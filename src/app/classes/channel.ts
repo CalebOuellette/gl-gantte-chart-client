@@ -13,6 +13,8 @@ export class Channel {
 
     public id: string;
 
+    public name: string;
+
     public adjustTaskTimes(adjustment: number, taskArray: Array<Task>) {
         taskArray.forEach((t: Task) => {
             t.startDate = new Date(t.startDate.getTime() + adjustment);
