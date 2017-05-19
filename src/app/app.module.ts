@@ -9,6 +9,7 @@ import { PercentRoundPipe } from './pipes/percent-round.pipe';
 import { TopbarComponent } from './topbar/topbar.component';
 import { ChartpageComponent } from './chartpage/chartpage.component';
 
+import { GlPrimitivesModule } from '../gl-primitives/gl-primitives.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,8 @@ import { ChartpageComponent } from './chartpage/chartpage.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    GlPrimitivesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

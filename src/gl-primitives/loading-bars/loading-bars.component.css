@@ -1,0 +1,11 @@
+.outer{
+    border-left: solid white;    
+}
+.now{
+    position: absolute;
+    height: 60px;
+    width: 4px;
+    left: 15px;
+    background-color: white;
+    z-index: 1;
+}

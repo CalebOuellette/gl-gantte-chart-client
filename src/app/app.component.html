@@ -1,1 +1,4 @@
 <gl-chartpage></gl-chartpage>
+<gl-chart *ngIf="!loading"></gl-chart>
+
+<loading-bars class="contain" *ngIf="loading"></loading-bars>
