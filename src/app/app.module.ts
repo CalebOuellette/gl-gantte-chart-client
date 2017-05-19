@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { AppComponent } from './app.component';
 import { ChartComponent } from './chart/chart.component';
@@ -10,6 +13,8 @@ import { TopbarComponent } from './topbar/topbar.component';
 import { ChartpageComponent } from './chartpage/chartpage.component';
 
 import { GlPrimitivesModule } from '../gl-primitives/gl-primitives.module';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +27,9 @@ import { GlPrimitivesModule } from '../gl-primitives/gl-primitives.module';
     BrowserModule,
     FormsModule,
     HttpModule,
-    GlPrimitivesModule
+    GlPrimitivesModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]
