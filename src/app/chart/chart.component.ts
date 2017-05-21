@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Task } from '../classes/task';
 import { Channel } from '../classes/channel';
 import * as _ from 'underscore';
+import { ProjectService } from '../services/project.service';
 
 @Component({
   selector: 'gl-chart',
@@ -29,7 +30,7 @@ export class ChartComponent implements OnInit {
   public dragEventType: number = 0; //TODO make an enum. this is the type of dragg happening. 
 
 
-  constructor() {
+  constructor(private projectService: ProjectService) {
     var c = new Channel();
     c.name = "Patch 1";
     c.tasks = [
@@ -110,12 +111,17 @@ export class ChartComponent implements OnInit {
   }
 
   public addTask(channel: Channel) {
-    var date = channel.lastTask.startDate.getTime
+    var date;
+    if (channel.lastTask) {
+      date = channel.lastTask.startDate.getTime;
+    } else {
+      date = new Date();
+    }
     var t: Task = { id: 'D', color: "#005757", startDate: new Date(channel.lastTask.startDate.getTime() + channel.lastTask.totalTime + 1), totalTime: 345600000, parentChannel: channel };
     channel.addTask(t);
   }
 
-  public addChannel(channel: Channel){
+  public addChannel(channel: Channel) {
     this.channels.push(channel);
   }
 

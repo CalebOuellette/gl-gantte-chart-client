@@ -1,4 +1,5 @@
 <div>
+  {{ (projectService.project | async).name }}
   <div class="now" [ngStyle]="{ left: nowOffset + 'px' }">
     Now
    
@@ -27,10 +28,15 @@
 
 
       </div>
-      <div  (mousedown)="addTask(channel)" class="addButton" [ngStyle]="{ left: ((nowOffset + (  -1 * (nowDate.getTime() - channel.lastTask.startDate.getTime() - channel.lastTask.totalTime ) / zoomScale) )+ 10) +'px'}" >
+      <div  (click)="addTask(channel)" class="addButton" [ngStyle]="{ left: ((nowOffset + (  -1 * (nowDate.getTime() - channel.lastTask.startDate.getTime() - channel.lastTask.totalTime ) / zoomScale) )+ 10) +'px'}" >
 
 
       </div>
     </div>
   </div>
+<div (click)="addChannel()"> 
+Add Channel
+
+</div>
+
 </div>

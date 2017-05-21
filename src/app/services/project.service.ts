@@ -6,24 +6,21 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 @Injectable()
 export class ProjectService {
 
-  constructor(db: AngularFireDatabase) { 
+  private PROJECTPATH = '/Projects/';
 
+  
+  constructor(private fireDb: AngularFireDatabase) {     
   }
 
-  public project: Project;
+  public project: any;
 
 
   public loadProjectByID(id: string){
-
+     this.project = this.fireDb.object(this.PROJECTPATH + id);
   }
 
   public createProject(){
     let project = new Project();
-
-    
-
-  }
-
-
+  }  
 
 }
