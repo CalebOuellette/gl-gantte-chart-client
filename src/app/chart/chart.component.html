@@ -1,10 +1,12 @@
 <div>
-  {{ (projectService.project | async).name }}
+  <div>
+     {{ (projectService.project | async)?.name }}
+  </div>
   <div class="now" [ngStyle]="{ left: nowOffset + 'px' }">
     Now
-   
+
   </div>
-   <div id="verticalNowLine" [ngStyle]="{ left: nowOffset + 'px' }"></div>
+  <div id="verticalNowLine" [ngStyle]="{ left: nowOffset + 'px' }"></div>
 
   <div *ngFor="let channel of channels" class="channel">
     <div id="channelName">
@@ -12,31 +14,28 @@
     </div>
     <div>
       <div class="info" *ngIf="channel.currentTask" [ngStyle]="{ width: (nowOffset - 5) + 'px' }">
-        Task {{channel.currentTask.id}}  <br>
-          <span class="percent">{{(( nowDate.getTime() - channel.currentTask.startDate.getTime() ) / channel.currentTask.totalTime)| percentRound | percent: '1.0-0' }}</span>
+        Task {{channel.currentTask.id}} <br>
+        <span class="percent">{{(( nowDate.getTime() - channel.currentTask.startDate.getTime() ) / channel.currentTask.totalTime)| percentRound | percent: '1.0-0' }}</span>
       </div>
       <div *ngFor="let item of channel.tasks" [ngStyle]="{ left: (nowOffset + (  -1 * (nowDate.getTime() - item.startDate.getTime()) / zoomScale) ) +'px', 'background-color': item.color, 'width': (item.totalTime / zoomScale) + 'px' }"
         class="task">
-        <div  (mousedown)="taskMove(item, $event)" class="dragZone">
+        <div (mousedown)="taskMove(item, $event)" class="dragZone">
           <div class="info" *ngIf="!channel.currentTask || channel.currentTask.id != item.id">
-             Task {{item.id}} <br>
-             <span class="percent">{{(( nowDate.getTime() - item.startDate.getTime() ) / item.totalTime)| percentRound | percent: '1.0-0' }}</span>
+            Task {{item.id}} <br>
+            <span class="percent">{{(( nowDate.getTime() - item.startDate.getTime() ) / item.totalTime)| percentRound | percent: '1.0-0' }}</span>
           </div>
         </div>
-        <div (mousedown)="taskExpand(item, $event)" class="expandZone" >
+        <div (mousedown)="taskExpand(item, $event)" class="expandZone">
         </div>
 
 
       </div>
-      <div  (click)="addTask(channel)" class="addButton" [ngStyle]="{ left: ((nowOffset + (  -1 * (nowDate.getTime() - channel.lastTask.startDate.getTime() - channel.lastTask.totalTime ) / zoomScale) )+ 10) +'px'}" >
-
-
+      <div (click)="addTask(channel)" class="addButton" [ngStyle]="{ left: ((nowOffset + (  -1 * (nowDate.getTime() - channel.lastTask.startDate.getTime() - channel.lastTask.totalTime ) / zoomScale) )+ 10) +'px'}">
+      +
       </div>
     </div>
   </div>
-<div (click)="addChannel()"> 
-Add Channel
-
-</div>
-
+  <div (click)="addChannel()">
+    Add Channel
+  </div>
 </div>

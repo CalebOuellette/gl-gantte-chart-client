@@ -5,4 +5,6 @@ export class Task{
   public startDate: Date;
   public totalTime: number;
   public parentChannel?: Channel;
+  public nextTaskID: string;
+  public preTaskID: string;
 }
