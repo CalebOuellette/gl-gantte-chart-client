@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ChartComponent } from './chart/chart.component';
@@ -14,6 +15,7 @@ import { ChartpageComponent } from './chartpage/chartpage.component';
 
 import { GlPrimitivesModule } from '../gl-primitives/gl-primitives.module';
 
+import { appRoutes } from './app.routes';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { GlPrimitivesModule } from '../gl-primitives/gl-primitives.module';
     FormsModule,
     HttpModule,
     GlPrimitivesModule,
+    RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule
   ],

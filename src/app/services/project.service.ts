@@ -16,7 +16,7 @@ export class ProjectService {
 
 
   public loadProjectByID(id: string){
-     this.project = this.fireDb.object(this.PROJECTPATH + id);
+     this.project = this.fireDb.object(this.PROJECTPATH + id);     
   }
 
   public createProject(){

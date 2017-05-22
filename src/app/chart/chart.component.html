@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="(projectService.project | async)">
   <div>
      {{ (projectService.project | async)?.name }}
   </div>
@@ -38,4 +38,10 @@
   <div (click)="addChannel()">
     Add Channel
   </div>
+</div>
+
+<div  *ngIf="!(projectService.project | async)" class="loadingContain">
+  
+<loading-bars ></loading-bars>
+loading...
 </div>
