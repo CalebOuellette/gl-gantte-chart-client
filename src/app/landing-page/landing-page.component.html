@@ -1,3 +1,10 @@
-<p>
-  landing-page works!
-</p>
+<div class="centerElement">
+
+  I already have a Project <br>
+  <input type="text" [(ngModel)]="projectCode">
+  <button *ngIf="projectCode.length == 5"> go </button>
+  <br> 
+  or
+  <br>
+  <span> I'm getting started for the first time!</span>
+</div>
