@@ -11,11 +11,12 @@ import { AppComponent } from './app.component';
 import { ChartComponent } from './chart/chart.component';
 import { PercentRoundPipe } from './pipes/percent-round.pipe';
 import { TopbarComponent } from './topbar/topbar.component';
-import { ChartpageComponent } from './chartpage/chartpage.component';
+import { ChartpageComponent } from './chart-page/chart-page.component';
 
 import { GlPrimitivesModule } from '../gl-primitives/gl-primitives.module';
 
 import { appRoutes } from './app.routes';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { appRoutes } from './app.routes';
     ChartComponent,
     PercentRoundPipe,
     TopbarComponent,
-    ChartpageComponent
+    ChartpageComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
