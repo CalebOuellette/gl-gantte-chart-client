@@ -2,7 +2,7 @@
 
   I already have a Project <br>
   <input type="text" [(ngModel)]="projectCode">
-  <button *ngIf="projectCode.length == 5"> go </button>
+  <button *ngIf="projectCode.length == 5" (click)="projectCodeClick()" > go </button>
   <br> 
   or
   <br>

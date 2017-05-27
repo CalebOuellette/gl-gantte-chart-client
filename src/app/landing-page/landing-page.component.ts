@@ -14,5 +14,10 @@ export class LandingPageComponent implements OnInit {
   ngOnInit() {
   }
 
+  public projectCodeClick(){
+    //check if good code
+    //redirect to page.
+  }
+
   
 }
