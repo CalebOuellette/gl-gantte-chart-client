@@ -19,6 +19,9 @@ import { Component, OnInit, animate, transition, state, trigger, style, Input } 
 export class BarComponent implements OnInit {
 
 
+//TODO https://stackoverflow.com/questions/5927284/how-can-i-make-setinterval-also-work-when-a-tab-is-inactive-in-chrome
+//Also see https://blog.thoughtram.io/angular/2016/09/16/angular-2-animation-important-concepts.html
+
   public colorPointer: number = 0;
   @Input() totalTime: number = 800;
   @Input() offset: number = 1000;

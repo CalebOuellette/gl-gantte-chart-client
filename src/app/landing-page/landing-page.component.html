@@ -7,9 +7,9 @@
     <span>
       <div class="bold iahap">I already have a Project</div>
       <div>
-        <div id="go" class="bold" *ngIf="projectCode.length > 5" (click)="projectCodeClick()">GO </div>
-        <input placeholder="ProjectCode#" class="projectCode" type="text" [(ngModel)]="projectCode">
-
+       
+        <input placeholder="ProjectCode#" class="projectCode" type="text" [(ngModel)]="projectCode"><br>
+         <div id="go" class="bold" *ngIf="projectCode.length > 5" (click)="projectCodeClick()">GO </div>
       </div>
       <div class="or bold">or</div>
       

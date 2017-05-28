@@ -30,7 +30,7 @@ export class ChartComponent implements OnInit {
   public dragEventType: number = 0; //TODO make an enum. this is the type of dragg happening. 
 
 
-  constructor(private projectService: ProjectService) {
+  constructor(public projectService: ProjectService) {
     var c = new Channel();
     c.name = "Patch 1";
     c.tasks = [
