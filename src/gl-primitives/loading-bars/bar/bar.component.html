@@ -1,4 +1,4 @@
-<div class="contain">
-  <div class="bar" [ngStyle]="{'backgroundColor': color[colorPointer], width: barLenght + 'px' }" [@movebar]="state">
+<div class="contain" [ngStyle]="{ width: barLenghtmax + 'px', height: barHeight + 'px' }">
+  <div *ngIf="showing" class="bar" [ngStyle]="{'backgroundColor': color[colorPointer], width: barLenght + 'px', height: barHeight + 'px' }" [@movebar]="state">
   </div>  
 </div>

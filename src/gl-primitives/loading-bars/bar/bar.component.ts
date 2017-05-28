@@ -7,27 +7,36 @@ import { Component, OnInit, animate, transition, state, trigger, style, Input } 
   animations: [
     trigger('movebar', [
       state('start', style({
-        left: '201px'
+        left: '200%'
       })),
       state('end', style({
-        left: '-101px'
+        left: '-100%'
       })),
-      transition('start => end', animate('800ms ease-in')),
+      transition('start => end', animate('800ms')),
     ])
   ]
 })
 export class BarComponent implements OnInit {
 
-  constructor() { }
+
+  public colorPointer: number = 0;
   @Input() totalTime: number = 800;
   @Input() offset: number = 1000;
   @Input() color: Array<String> = ["#FF0000"];
+  @Input() barHeight: number = 60;
 
-  public colorPointer = 0;
-  public barLenght = 100;
 
-  ngOnInit() {
-    
+  public barLenght: number = 100;
+  @Input() barLenghtmin: number = 50;
+  @Input() barLenghtmax: number = 100;
+
+  public showing = true;
+  constructor() { }
+
+  ngOnInit() {    
+    if(this.offset == -1){
+      this.showing = false;
+    }
     setTimeout(() => {
       this.reset();
     }, this.offset);
@@ -53,13 +62,13 @@ export class BarComponent implements OnInit {
   }
 
   private updateColorPointer() {
-    this.colorPointer = Math.floor(Math.random() * this.color.length);  
+    this.colorPointer = Math.floor(Math.random() * this.color.length);
   }
-  private updateLength(){    
-    this.barLenght  = Math.floor(Math.random() * 90) + 10;  
+  private updateLength() {
+    this.barLenght = Math.floor(Math.random() * (this.barLenghtmax - this.barLenghtmin)) + this.barLenghtmin;
   }
 
-  
+
 
 
 }

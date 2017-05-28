@@ -1,10 +1,19 @@
-<div class="centerElement">
+<div class="canvas">
 
-  I already have a Project <br>
-  <input type="text" [(ngModel)]="projectCode">
-  <button *ngIf="projectCode.length == 5" (click)="projectCodeClick()" > go </button>
-  <br> 
-  or
-  <br>
-  <span> I'm getting started for the first time!</span>
+  <loading-bars [nowBar]="false" [colors]="['#5889B5','#CD4352','#DFE074','#FD2700', '#22639D']" [barHeight]="100"
+    [barLenghtmax]="1920" [rows]="10" id="background"></loading-bars>
+
+  <div class="centerElement centerElementsEdit">
+    <span>
+      <div class="bold iahap">I already have a Project</div>
+      <div>
+        <div id="go" class="bold" *ngIf="projectCode.length > 5" (click)="projectCodeClick()">GO </div>
+        <input placeholder="ProjectCode#" class="projectCode" type="text" [(ngModel)]="projectCode">
+
+      </div>
+      <div class="or bold">or</div>
+      
+        <div class="bold" id="createButton" routerLink="/CreatePage"> I'm getting started for the first time!</div>      
+    </span>
+  </div>
 </div>
