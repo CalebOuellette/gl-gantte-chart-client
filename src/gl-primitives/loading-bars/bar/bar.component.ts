@@ -12,7 +12,7 @@ import { Component, OnInit, animate, transition, state, trigger, style, Input } 
       state('end', style({
         left: '-100%'
       })),
-      transition('start => end', animate('800ms')),
+      transition('start => end', animate('3000ms')),
     ])
   ]
 })
@@ -23,7 +23,7 @@ export class BarComponent implements OnInit {
 //Also see https://blog.thoughtram.io/angular/2016/09/16/angular-2-animation-important-concepts.html
 
   public colorPointer: number = 0;
-  @Input() totalTime: number = 800;
+  @Input() totalTime: number = 3000;
   @Input() offset: number = 1000;
   @Input() color: Array<String> = ["#FF0000"];
   @Input() barHeight: number = 60;
