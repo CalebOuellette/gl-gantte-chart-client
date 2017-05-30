@@ -34,11 +34,11 @@ export class LoadingBarsComponent implements OnInit {
     '#454ADE',
   ]
 
-  @Input() barHeight: number = 60;
+  @Input() barHeight: number = 10;
 
 
   @Input() barLenght: number = 100;
-  @Input() barLenghtmin: number = 50;
+  @Input() barLenghtmin: number = 10;
   @Input() barLenghtmax: number = 100;
 
 

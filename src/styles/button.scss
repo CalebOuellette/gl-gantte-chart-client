@@ -1,0 +1,23 @@
+@import './box';
+@import './vars';
+
+.glButton{
+    @extend .boxL ;
+    width: 150px;
+    height: 30px;
+    color: $black;
+    line-height: 30px;
+    padding-left: 15px;
+     font-weight: 800;
+     transition: .3s;
+     user-select: none;  
+}
+
+
+.glButton:hover {  
+  box-shadow: 4px 9px 9px rgba(0, 0, 0, 0.50);    
+}
+
+.glButton:active{
+  transform: scale(1.03);
+}

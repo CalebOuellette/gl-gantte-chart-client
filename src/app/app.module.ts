@@ -18,6 +18,7 @@ import { GlPrimitivesModule } from '../gl-primitives/gl-primitives.module';
 import { appRoutes } from './app.routes';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ChartCreatePageComponent } from './chart-create-page/chart-create-page.component';
+import { PrimitivesPageComponent } from './primitives-page/primitives-page.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ChartCreatePageComponent } from './chart-create-page/chart-create-page.
     TopbarComponent,
     ChartpageComponent,
     LandingPageComponent,
-    ChartCreatePageComponent
+    ChartCreatePageComponent,
+    PrimitivesPageComponent
   ],
   imports: [
     BrowserModule,
