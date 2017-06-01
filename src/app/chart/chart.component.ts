@@ -34,8 +34,8 @@ export class ChartComponent implements OnInit {
     var c = new Channel();
     c.name = "Patch 1";
     c.tasks = [
-      { id: 'A', color: "#F2C94C", startDate: new Date(), totalTime: 345600000, parentChannel: c },
-      { id: 'B', color: "#F2994A", startDate: new Date(), totalTime: 345600000, parentChannel: c }
+      { id: 'A', color: "#5BC0EB", startDate: new Date(), totalTime: 345600000, parentChannel: c },
+      { id: 'B', color: "#FDE74C", startDate: new Date(), totalTime: 345600000, parentChannel: c }
     ];
     c.id = "1234";
     c.setCurrentTask();
@@ -44,7 +44,7 @@ export class ChartComponent implements OnInit {
     c2.id = "12345";
     c2.name = "Feature 3"
     c2.tasks = [
-      { id: 'C', color: "#EB5757", startDate: new Date(), totalTime: 345600000, parentChannel: c2 }
+      { id: 'C', color: "#FA7921", startDate: new Date(), totalTime: 345600000, parentChannel: c2 }
     ]
     c2.setCurrentTask();
     this.channels.push(c2);
@@ -76,8 +76,6 @@ export class ChartComponent implements OnInit {
         } else {
           this.dragItem.parentChannel.adjusTasksAfter(this.dragItem, ((event.clientX - this.last.clientX) * this.zoomScale));
         }
-
-
         this.last = event;
       }
       else if (this.dragEventType == 2) {
@@ -99,7 +97,7 @@ export class ChartComponent implements OnInit {
     this.dragItem = task;
     this.dragging = true;
     this.last = event;
-    this.dragEventType = 1;
+    this.dragEventType = 1;    
   }
 
 

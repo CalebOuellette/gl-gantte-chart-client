@@ -1,13 +1,11 @@
-<div *ngIf="(projectService.project | async)">
+<div class="chart" *ngIf="(projectService.project | async)">
   <div>
     {{ (projectService.project | async)?.name }}
-  </div>
-  <div class="now" [ngStyle]="{ left: nowOffset + 'px' }">
-    Now
-
-  </div>
+  </div>  
   <div id="verticalNowLine" [ngStyle]="{ left: nowOffset + 'px' }"></div>
-
+  <div id="buffer">
+    
+  </div>
   <div *ngFor="let channel of channels" class="channel">
     <div [ngStyle]="{ left: nowOffset + 'px' }" class="channelName boldText">
       {{channel.name}}
