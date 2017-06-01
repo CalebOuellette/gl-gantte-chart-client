@@ -9,15 +9,18 @@
     line-height: 30px;
     padding-left: 15px;
      font-weight: 800;
-     transition: .3s;
+     transition: .2s;
      user-select: none;  
+     position: relative;
+     left: 0px;
+     top: 0px;
 }
 
 
 .glButton:hover {  
-  box-shadow: 4px 9px 9px rgba(0, 0, 0, 0.50);    
+  box-shadow: $hoverShadow;  
 }
 
-.glButton:active{
-  transform: scale(1.03);
+.glButton:active{ 
+  box-shadow: $restShadow;  
 }

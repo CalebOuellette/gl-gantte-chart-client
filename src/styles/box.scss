@@ -1,10 +1,31 @@
+@import './text';
+
+$borderRadius: 10px;
+
 /* box Large size */
 .boxL{
-    /* Rectangle */
-    background: white;
-    opacity: 1.00;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius:  10px 0 10px 0;
-
+    background: white;    
+    box-shadow: $restShadow;
+    border-radius:  $borderRadius 0 $borderRadius 0;
+  
 }
 
+
+/* box Large size Reversed corners*/
+.boxLR{
+    @extend .boxL;
+    border-radius: 0 $borderRadius 0 $borderRadius;
+}
+
+
+.boxLTitle{
+    
+    @extend .boldText;    
+    padding-left: 15px;
+    padding-top: 3px;       
+}
+
+.boxLSubText{    
+    @extend .normalText;    
+    padding-left: 15px;     
+}
