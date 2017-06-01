@@ -1,4 +1,4 @@
-<div class="chart" *ngIf="(projectService.project | async)">
+<div (mousedown)="timelineMove($event)" (scroll)="onScroll($event)" class="chart" *ngIf="(projectService.project | async)">
   <div>
     {{ (projectService.project | async)?.name }}
   </div>  

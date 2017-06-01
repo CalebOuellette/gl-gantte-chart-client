@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewEncapsulation } from '@angular/core';
 import { Task } from '../classes/task';
 import { Channel } from '../classes/channel';
 import * as _ from 'underscore';
@@ -7,7 +7,8 @@ import { ProjectService } from '../services/project.service';
 @Component({
   selector: 'gl-chart',
   templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.scss']
+  styleUrls: ['./chart.component.scss'],
+  host: {'(window:scroll)': 'doSomething($event)'}
 })
 export class ChartComponent implements OnInit {
 
@@ -66,6 +67,13 @@ export class ChartComponent implements OnInit {
     this.dragEventType = 0;
   }
 
+  @HostListener('mouseleave')
+  onMouseLeave(event: MouseEvent) {
+    this.dragging = false;
+    this.dragItem = null;
+    this.dragEventType = 0;
+  }
+
   @HostListener('mousemove', ['$event'])
   onMousemove(event: MouseEvent) {
     if (this.dragging && this.dragEventType) {
@@ -83,9 +91,20 @@ export class ChartComponent implements OnInit {
         this.dragItem.parentChannel.adjustAllTaskTimes(((event.clientX - this.last.clientX) * this.zoomScale));
         this.last = event;
       }
+      else if (this.dragEventType == 3) {
+        this.nowOffset = (this.nowOffset + (event.clientX - this.last.clientX));        
+        this.last = event;
+      }
     }
   }
 
+   @HostListener('window:scroll', ['$event']) 
+    doSomething(event) {
+      // console.debug("Scroll Event", document.body.scrollTop);
+      // see András Szepesházi's comment below
+      
+      console.log("Scroll Event", window.pageYOffset );
+    }
 
 
   @HostListener('mousedown', ['$event'])
@@ -97,7 +116,8 @@ export class ChartComponent implements OnInit {
     this.dragItem = task;
     this.dragging = true;
     this.last = event;
-    this.dragEventType = 1;    
+    this.dragEventType = 1;
+    event.stopPropagation();
   }
 
 
@@ -106,7 +126,17 @@ export class ChartComponent implements OnInit {
     this.dragging = true;
     this.last = event;
     this.dragEventType = 2;
+    event.stopPropagation();
   }
+
+  public timelineMove(event: MouseEvent) {
+    this.dragging = true;
+    this.last = event;
+    this.dragEventType = 3;
+    event.stopPropagation();
+  }
+
+
 
   public addTask(channel: Channel) {
     var date;
