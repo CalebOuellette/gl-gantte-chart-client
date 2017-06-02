@@ -1,6 +1,6 @@
 
 
-$buttonWidth: 500px;
+$buttonWidth: 558px;
 
 $border-r: 15px;
 $dark: #0A1413;
@@ -33,6 +33,7 @@ $light: #F2C94C;
     font-weight: bold;  
     font-size: 24px;
      padding-left: 5px;
+     text-align: center;
 }
 
 
@@ -67,15 +68,6 @@ $light: #F2C94C;
          display: inline-block;
 }
 
-#createButton:active{
-  transform: scale(1.03);
-}
-
-#createButton:hover{
-  transform: scale(1.03);
-  border: 2px solid #F2C94C;
-}
-
 .background{
     position: absolute;    
 }
@@ -89,4 +81,3 @@ $light: #F2C94C;
 .center{
     width: 400px;
 }
-
