@@ -2,7 +2,7 @@
 @import './vars';
 
 .glButton{
-    @extend .boxL ;
+    @extend .boxLR ;
     width: 150px;
     height: 30px;
     color: $black;
@@ -23,4 +23,19 @@
 
 .glButton:active{ 
   box-shadow: $restShadow;  
+}
+
+.glInput{
+    @extend .boxLR ;
+     width: 150px;
+    height: 30px;
+    color: $black;
+    line-height: 30px;
+      padding-left: 15px;
+      color: white;
+    outline: none;
+    border: solid white;
+    background-color: transparent;
+    font-weight: 800;
+    font-size: 15px;
 }

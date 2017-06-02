@@ -7,16 +7,6 @@ $dark: #0A1413;
 $light: #F2C94C;
 
 
-.box{
-    /* Rectangle 6 */
-    background: #0A1413;
-    opacity: 1.00;
-    border: 2px solid $dark;
-    box-sizing: border-box;
-    border-radius:  $border-r $border-r $border-r 0;
-}
-
-
 .centerElementsEdit{
     width: 100vw;
     text-align: center;
@@ -34,28 +24,15 @@ $light: #F2C94C;
 
 
 .projectCode{    
-    background: $dark;
     opacity: 1.00;
     border: 2px solid white;
     box-sizing: border-box;
-    border-radius: $border-r $border-r $border-r 0;
     color: white;
     width: $buttonWidth;
     height: 50px;
     font-weight: bold;  
     font-size: 24px;
      padding-left: 5px;
-}
-
-input::placeholder {
-  color: #192119;
-  
-}
-
-input:focus {
-    outline: none;
-    transform: scale(1.03);
-    border: 2px solid $light;
 }
 
 
@@ -68,8 +45,7 @@ input:focus {
 }
 
 #go{
-     
-    @extend .box;         
+           
     border-radius: 5px;
       width: $buttonWidth;
     font-size: 24px;
@@ -82,8 +58,6 @@ input:focus {
 }
 
 #createButton{
-       @extend .box;
-         color: white;
          height: 50px;
          line-height: 50px;
          padding-left: 5px;

@@ -5,15 +5,17 @@
 
   <div class="centerElement centerElementsEdit">
     <span>
-      <div class="bold iahap">I already have a Project</div>
+      <div class="bold iahap">Already have a project link?
+
+      </div>
       <div>
        
-        <input placeholder="ProjectCode#" class="projectCode" type="text" [(ngModel)]="projectCode"><br>
+        <input placeholder="ProjectCode#" class="projectCode glInput" type="text" [(ngModel)]="projectCode"><br>
          <div id="go" class="bold" *ngIf="projectCode.length > 5" (click)="projectCodeClick()">GO </div>
       </div>
       <div class="or bold">or</div>
       
-        <div class="bold" id="createButton" routerLink="/CreatePage"> I'm getting started for the first time!</div>      
+        <div class="bold glButton" id="createButton" routerLink="/CreatePage"> Create Project</div>      
     </span>
   </div>
 </div>
