@@ -3,10 +3,11 @@
     {{ (projectService.project | async)?.name }}
   </div>  
   <div id="verticalNowLine" [ngStyle]="{ left: nowOffset + 'px' }"></div>
-  <div id="buffer">
-    
+   <div class="glButton" [ngStyle]="{ left: (nowOffset + 8) + 'px' }" (click)="addChannel()">
+    Add Channel
   </div>
-  <div *ngFor="let channel of channels" class="channel">
+
+  <div *ngFor="let channel of channels; let ix = index;" [ngStyle]="{ top: (90 * ix) + 100 + 'px' }" class="channel">
     <div [ngStyle]="{ left: nowOffset + 'px' }" class="channelName boldText">
       {{channel.name}}
     </div>
@@ -33,9 +34,7 @@
       </div>
     </div>
   </div>
-  <div (click)="addChannel()">
-    Add Channel
-  </div>
+
 </div>
 
 <div *ngIf="!(projectService.project | async)" class="centerElement">

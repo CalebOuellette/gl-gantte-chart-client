@@ -25,9 +25,12 @@ $taskHeight: 50px;
 }
 
 .channel{    
+    position: absolute;
+    width: 100%;
     padding-bottom: 10px;
     padding-top: 10px; 
     height: $taskHeight + 15px;
+    overflow: hidden;
 }
 
 .percent{
@@ -88,6 +91,7 @@ h1{
 
 .chart{
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    position: absolute;
     overflow: hidden;
 }
