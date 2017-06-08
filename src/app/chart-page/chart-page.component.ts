@@ -16,7 +16,6 @@ export class ChartpageComponent implements OnInit {
   public loadedProject;
 
   ngOnInit() {    
-    this.loadedProject = this.projectService.project;
   }
 
 }

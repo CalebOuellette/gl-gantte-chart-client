@@ -3,7 +3,7 @@ import { Task } from '../classes/task';
 import { Channel } from '../classes/channel';
 import * as _ from 'underscore';
 import { ProjectService } from '../services/project.service';
-
+import { FirebaseListObservable } from 'angularfire2/database';
 @Component({
   selector: 'gl-chart',
   templateUrl: './chart.component.html',
@@ -16,7 +16,8 @@ export class ChartComponent implements OnInit {
 
   public nowDate: Date = new Date(); //right now.
 
-  public channels: Array<Channel> = []; //list of channels 
+  public channels: FirebaseListObservable<any>; //list of channels 
+
 
   private dragging: boolean = false; //if there is something being dragged.
   private dragItem: Task; //the item being dragged.
@@ -35,23 +36,23 @@ export class ChartComponent implements OnInit {
     var c = new Channel();
     c.name = "Patch 1";
     c.tasks = [
-      { id: 'A', color: "#5BC0EB", startDate: new Date(), totalTime: 345600000, parentChannel: c },
-      { id: 'B', color: "#FDE74C", startDate: new Date(), totalTime: 345600000, parentChannel: c }
+      { id: 'A', color: "#5BC0EB", startDate: new Date(), totalTime: 345600000 },
+      { id: 'B', color: "#FDE74C", startDate: new Date(), totalTime: 345600000 }
     ];
     c.id = "1234";
-    c.setCurrentTask();
-    this.channels.push(c);
+  ///  c.setCurrentTask();
+  //  this.channels.push(c);
     var c2 = new Channel();
     c2.id = "12345";
     c2.name = "Feature 3"
     c2.tasks = [
-      { id: 'C', color: "#FA7921", startDate: new Date(), totalTime: 345600000, parentChannel: c2 }
+      { id: 'C', color: "#FA7921", startDate: new Date(), totalTime: 345600000 }
     ]
     c2.setCurrentTask();
-    this.channels.push(c2);
+//    this.channels.push(c2);
 
-
-    this.channels[0].tasks[1].startDate.setHours(this.channels[0].tasks[1].startDate.getHours() + 100);
+       this.channels = projectService.channels;
+      
 
   }
 

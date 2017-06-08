@@ -1,5 +1,8 @@
 import { Task } from "./task";
 import * as _ from 'underscore';
+import { FirebaseObjectObservable } from 'angularfire2/database';
+
+
 
 export class Channel {
 
@@ -14,6 +17,7 @@ export class Channel {
     public id: string;
 
     public name: string;
+    
 
     public adjustTaskTimes(adjustment: number, taskArray: Array<Task>) {
         taskArray.forEach((t: Task) => {

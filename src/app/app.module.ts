@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ChartComponent } from './chart/chart.component';
-import { PercentRoundPipe } from './pipes/percent-round.pipe';
+import { PercentRoundPipe } from './pipes/percent-round/percent-round.pipe';
 import { TopbarComponent } from './topbar/topbar.component';
 import { ChartpageComponent } from './chart-page/chart-page.component';
 
@@ -19,6 +19,9 @@ import { appRoutes } from './app.routes';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ChartCreatePageComponent } from './chart-create-page/chart-create-page.component';
 import { PrimitivesPageComponent } from './primitives-page/primitives-page.component';
+import { TestPageComponent } from './test-page/test-page.component';
+import { FltrChannelIdPipe } from './pipes/fltr-channel-id/fltr-channel-id.pipe';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { PrimitivesPageComponent } from './primitives-page/primitives-page.compo
     ChartpageComponent,
     LandingPageComponent,
     ChartCreatePageComponent,
-    PrimitivesPageComponent
+    PrimitivesPageComponent,
+    TestPageComponent,
+    FltrChannelIdPipe    
   ],
   imports: [
     BrowserModule,

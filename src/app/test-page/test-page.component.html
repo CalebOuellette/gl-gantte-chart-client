@@ -1,0 +1,19 @@
+
+
+<pre>{{projectService.project | async | json}}</pre>
+
+
+<button (click)="addChannel()">Add Channel</button>
+
+<h1>Channels</h1>
+<div *ngFor="let channel of projectService.channels | async">
+  ChannelName: {{channel.name}}    
+
+  <button (click)="addTask(channel.$key)">Add Task</button>
+
+  <h3>tasks</h3>
+  <div *ngFor="let item of projectService.tasks | async | fltrChannelId: channel.$key">
+    {{item.name}}
+  </div>
+</div>
+

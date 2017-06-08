@@ -1,23 +1,23 @@
 <div (mousedown)="timelineMove($event)" (scroll)="onScroll($event)" class="chart" *ngIf="(projectService.project | async)">
   <div>
-    {{ (projectService.project | async)?.name }}
+    {{(projectService.project | async).name}}
   </div>  
   <div id="verticalNowLine" [ngStyle]="{ left: nowOffset + 'px' }"></div>
    <div class="glButton" [ngStyle]="{ left: (nowOffset + 8) + 'px' }" (click)="addChannel()">
     Add Channel
   </div>
 
-  <div *ngFor="let channel of channels; let ix = index;" [ngStyle]="{ top: (90 * ix) + 100 + 'px' }" class="channel">
+  <div *ngFor="let channel of projectService.channels | async; let ix = index;" [ngStyle]="{ top: (90 * ix) + 100 + 'px' }" class="channel">
     <div [ngStyle]="{ left: nowOffset + 'px' }" class="channelName boldText">
       {{channel.name}}
     </div>
-    <div>
+    <!--<div>
       <div class="info boldText" *ngIf="channel.currentTask" [ngStyle]="{ left: (nowOffset - 50) + 'px' }">
         Task {{channel.currentTask.id}} <br>
         <span class="percent">{{(( nowDate.getTime() - channel.currentTask.startDate.getTime() ) / channel.currentTask.totalTime)| percentRound | percent: '1.0-0' }}</span>
       </div>
 
-      <div *ngFor="let item of channel.tasks" [ngStyle]="{ left: (nowOffset + (  -1 * (nowDate.getTime() - item.startDate.getTime()) / zoomScale) ) +'px', 'background-color': item.color, 'width': (item.totalTime / zoomScale) + 'px' }"
+      <div *ngFor="let item of channel.tasks | async" [ngStyle]="{ left: (nowOffset + (  -1 * (nowDate.getTime() - item.startDate.getTime()) / zoomScale) ) +'px', 'background-color': item.color, 'width': (item.totalTime / zoomScale) + 'px' }"
         class="boxL task">
         <div (mousedown)="taskMove(item, $event)" class="dragZone">
           <div class="boxLTitle" *ngIf="!channel.currentTask || channel.currentTask.id != item.id">
@@ -32,7 +32,7 @@
       <div (click)="addTask(channel)" class="addButton" [ngStyle]="{ left: ((nowOffset + (  -1 * (nowDate.getTime() - channel.lastTask.startDate.getTime() - channel.lastTask.totalTime ) / zoomScale) )+ 10) +'px'}">
         +
       </div>
-    </div>
+    </div>-->
   </div>
 
 </div>
