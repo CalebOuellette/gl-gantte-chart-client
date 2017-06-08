@@ -21,6 +21,7 @@ import { ChartCreatePageComponent } from './chart-create-page/chart-create-page.
 import { PrimitivesPageComponent } from './primitives-page/primitives-page.component';
 import { TestPageComponent } from './test-page/test-page.component';
 import { FltrChannelIdPipe } from './pipes/fltr-channel-id/fltr-channel-id.pipe';
+import { ChartChannelComponent } from './chart/chart-channel/chart-channel.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { FltrChannelIdPipe } from './pipes/fltr-channel-id/fltr-channel-id.pipe'
     ChartCreatePageComponent,
     PrimitivesPageComponent,
     TestPageComponent,
-    FltrChannelIdPipe    
+    FltrChannelIdPipe,
+    ChartChannelComponent    
   ],
   imports: [
     BrowserModule,
