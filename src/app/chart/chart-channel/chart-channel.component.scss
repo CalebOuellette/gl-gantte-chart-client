@@ -1,0 +1,97 @@
+$taskHeight: 50px;
+
+.channelName{
+    position: relative;
+    padding-left: 5px;
+}
+
+.task{
+    height: $taskHeight;
+    
+    position: absolute;            
+    z-index: 2;  
+    user-select: none;
+}
+
+.addButton{
+    height: $taskHeight /2;
+    width: $taskHeight /2;
+       border-width: 1px;
+    border-style: solid;
+    border-color: white;
+    position: absolute;  
+     border-radius: 5px;
+     text-align: center;
+}
+
+.channel{    
+    position: absolute;
+    width: 100%;
+    padding-bottom: 10px;
+    padding-top: 10px; 
+    height: $taskHeight + 15px;
+    overflow: hidden;
+}
+
+.percent{
+    color: #EEE;
+    font-size: .75em;
+}
+
+#buffer{
+    height: 50px;
+    width: 10px;
+}
+.now{                
+    position: relative;
+    display: inline-block;        
+}
+
+#verticalNowLine{
+    position: absolute;    
+    height: 100%;
+    width: 4px;
+    background-color: white;        
+}
+
+
+h1{
+    margin: 30px;
+}
+
+.gl-chart{
+    overflow: hidden;
+}
+
+.info{    
+    text-align: center;
+    display: inline-block;
+    position: absolute;    
+    padding-right: 5px;
+    user-select: none;
+    z-index: 20;
+    width: 100px;
+}
+
+.dragZone{
+  
+    display: inline-block;
+    width: 95%;
+    height: 100%;
+     cursor:grab;
+}
+
+.expandZone{    
+    display: block;
+    width: 5px;
+    height: 100%;
+    float: right;
+    cursor:ew-resize;
+}
+
+.chart{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+}

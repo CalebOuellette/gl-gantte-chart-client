@@ -11,7 +11,7 @@
     <div [ngStyle]="{ left: nowOffset + 'px' }" class="channelName boldText">
       {{channel.name}}
     </div>
-    <gl-chart-channel [channel]=""></gl-chart-channel>
+    <gl-chart-channel [nowOffset]="nowOffset" [zoomScale]="zoomScale" [channelID]="channel.$key"></gl-chart-channel>
     <!--<div>
       <div class="info boldText" *ngIf="channel.currentTask" [ngStyle]="{ left: (nowOffset - 50) + 'px' }">
         Task {{channel.currentTask.id}} <br>

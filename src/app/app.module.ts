@@ -22,6 +22,7 @@ import { PrimitivesPageComponent } from './primitives-page/primitives-page.compo
 import { TestPageComponent } from './test-page/test-page.component';
 import { FltrChannelIdPipe } from './pipes/fltr-channel-id/fltr-channel-id.pipe';
 import { ChartChannelComponent } from './chart/chart-channel/chart-channel.component';
+import { StringToDatePipe } from './pipes/string-to-date/string-to-date.pipe';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ChartChannelComponent } from './chart/chart-channel/chart-channel.compo
     PrimitivesPageComponent,
     TestPageComponent,
     FltrChannelIdPipe,
-    ChartChannelComponent    
+    ChartChannelComponent,    
+    StringToDatePipe    
   ],
   imports: [
     BrowserModule,

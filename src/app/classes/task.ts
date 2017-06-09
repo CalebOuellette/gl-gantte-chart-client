@@ -5,7 +5,7 @@ export class TaskProps{
   public color: string;
   public startDate: Date;
   public totalTime: number;
-  public channelID?: Channel;
+  public channelID?: string;
   public nextTaskID?: string;
   public preTaskID?: string;
 }
@@ -16,7 +16,7 @@ export class Task{
   public color: string;
   public startDate: Date;
   public totalTime: number;
-  public channelID?: Channel;
+  public channelID?: string;
   public nextTaskID?: string;
   public preTaskID?: string;
 }

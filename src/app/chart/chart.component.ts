@@ -83,13 +83,13 @@ export class ChartComponent implements OnInit {
         if (this.dragItem.totalTime < (this.zoomScale * 40)) {
           this.dragItem.totalTime = this.zoomScale * 40;
         } else {
-          this.dragItem.parentChannel.adjusTasksAfter(this.dragItem, ((event.clientX - this.last.clientX) * this.zoomScale));
+    //      this.dragItem.parentChannel.adjusTasksAfter(this.dragItem, ((event.clientX - this.last.clientX) * this.zoomScale));
         }
         this.last = event;
       }
       else if (this.dragEventType == 2) {
         // this.dragItem.startDate = new Date(this.dragItem.startDate.getTime() - ((event.clientX - this.last.clientX) * this.zoomScale));
-        this.dragItem.parentChannel.adjustAllTaskTimes(((event.clientX - this.last.clientX) * this.zoomScale));
+  //      this.dragItem.parentChannel.adjustAllTaskTimes(((event.clientX - this.last.clientX) * this.zoomScale));
         this.last = event;
       }
       else if (this.dragEventType == 3) {
@@ -139,16 +139,16 @@ export class ChartComponent implements OnInit {
 
 
 
-  public addTask(channel: Channel) {
-    var date;
-    if (channel.lastTask) {
-      date = channel.lastTask.startDate.getTime;
-    } else {
-      date = new Date();
-    }
-    var t: Task = { id: 'D', color: "#005757", startDate: new Date(channel.lastTask.startDate.getTime() + channel.lastTask.totalTime + 1), totalTime: 345600000, parentChannel: channel };
-    channel.addTask(t);
-  }
+  // public addTask(channel: Channel) {
+  //   var date;
+  //   if (channel.lastTask) {
+  //     date = channel.lastTask.startDate.getTime;
+  //   } else {
+  //     date = new Date();
+  //   }
+  //   var t: Task = { id: 'D', color: "#005757", startDate: new Date(channel.lastTask.startDate.getTime() + channel.lastTask.totalTime + 1), totalTime: 345600000, parentChannel: channel };
+  //   channel.addTask(t);
+  // }
 
   public addChannel(channel: Channel) {
     this.channels.push(channel);
