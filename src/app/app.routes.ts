@@ -5,6 +5,7 @@ import { ChartCreatePageComponent } from './chart-create-page/chart-create-page.
 import { PrimitivesPageComponent } from './primitives-page/primitives-page.component';
 import { TestPageComponent } from './test-page/test-page.component';
 export const appRoutes: Routes = [
+  { path: 'ChartPage/:id', component: ChartpageComponent },
   { path: 'ChartPage', component: ChartpageComponent },
   { path: 'CreatePage', component: ChartCreatePageComponent },
   { path: 'LandingPage', component: LandingPageComponent },
