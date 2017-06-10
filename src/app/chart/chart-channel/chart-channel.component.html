@@ -1,9 +1,3 @@
-<!--<div>
-      <div class="info boldText" *ngIf="channel.currentTask" [ngStyle]="{ left: (nowOffset - 50) + 'px' }">
-        Task {{channel.currentTask.id}} <br>
-        <span class="percent">{{(( nowDate.getTime() - channel.currentTask.startDate.getTime() ) / channel.currentTask.totalTime)| percentRound | percent: '1.0-0' }}</span>
-      </div>
-      -->
 <div id="conatin">
   <div *ngFor="let item of taskList | async" [ngStyle]="{ left: (nowOffset + ( (nowDate.getTime() - item.startDate) / zoomScale) ) + 'px', 'background-color': item.color, 'width': (item.totalTime / zoomScale) + 'px' }"
     class="boxL task">

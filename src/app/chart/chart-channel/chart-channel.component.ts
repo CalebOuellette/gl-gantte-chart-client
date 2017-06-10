@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, HostListener } from '@angular/core';
 import { ProjectService } from '../../services/project.service';
-import { Task } from '../../classes/task';
+import { TaskProps } from '../../classes/task';
 import { Channel } from '../../classes/channel';
 import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
@@ -13,8 +13,6 @@ export class ChartChannelComponent implements OnInit {
 
 
   public nowDate: Date = new Date(); //right now.
-
-
 
   private dragging: boolean = false; //if there is something being dragged.
   private dragItem: any; //the item being dragged.
@@ -95,7 +93,7 @@ export class ChartChannelComponent implements OnInit {
   }
 
 
-  public taskExpand(task: Task, event: MouseEvent) {
+  public taskExpand(task: TaskProps, event: MouseEvent) {
     this.dragItem = task;
     this.dragging = true;
     this.last = event;
@@ -104,7 +102,7 @@ export class ChartChannelComponent implements OnInit {
   }
 
 
-  public taskMove(task: Task, event: MouseEvent) {
+  public taskMove(task: TaskProps, event: MouseEvent) {
     this.dragItem = task;
     this.dragging = true;
     this.last = event;
@@ -121,15 +119,13 @@ export class ChartChannelComponent implements OnInit {
 
 
 
-  public addTask(channel: Channel) {
+  public addTask(channel: Channel, afterTask?: TaskProps) {
     var date;
-    if (channel.lastTask) {
-      date = channel.lastTask.startDate;
-    } else {
-      date = new Date();
+    if(afterTask){
+
+    }else{
+      var t: TaskProps = { name: "new Name", color: "#005757", startDate: new Date().getTime(), totalTime: 345600000, channelID: this.channelID };
     }
-    var t: Task = { name: "new Name", color: "#005757", startDate: channel.lastTask.startDate + channel.lastTask.totalTime + 1, totalTime: 345600000, channelID: this.channelID };
-    channel.addTask(t);
   }
 
 

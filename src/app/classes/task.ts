@@ -9,7 +9,7 @@ export class TaskProps{
 }
 
 
-export class Task{
+class Task{
   public color: string;
   public startDate: number;
   public totalTime: number;
