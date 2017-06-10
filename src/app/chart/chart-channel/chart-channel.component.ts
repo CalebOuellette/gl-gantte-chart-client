@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, HostListener } from '@angular/core';
 import { ProjectService } from '../../services/project.service';
 import { TaskProps } from '../../classes/task';
-import { Channel } from '../../classes/channel';
+import { ChannelProps } from '../../classes/channel';
 import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
 @Component({
@@ -26,13 +26,13 @@ export class ChartChannelComponent implements OnInit {
 
   public dragEventType: number = 0; //TODO make an enum. this is the type of dragg happening. 
 
-  public taskList: FirebaseListObservable<any>;
+  public taskList: FirebaseListObservable<TaskProps[]>;
 
 
 
   @Input() channelID: string;
 
-  public channel: FirebaseObjectObservable<any>;
+  public channel: FirebaseObjectObservable<ChannelProps>;
 
   constructor(public projectService: ProjectService) { }
 
@@ -119,8 +119,7 @@ export class ChartChannelComponent implements OnInit {
 
 
 
-  public addTask(channel: Channel, afterTask?: TaskProps) {
-    var date;
+  public addTask(afterTask?: TaskProps) {    
     if(afterTask){
 
     }else{

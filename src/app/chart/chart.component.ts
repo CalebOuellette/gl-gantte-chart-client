@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener, ViewEncapsulation } from '@angular/core';
 import { TaskProps } from '../classes/task';
-import { Channel } from '../classes/channel';
+import { ChannelProps } from '../classes/channel';
 import * as _ from 'underscore';
 import { ProjectService } from '../services/project.service';
 import { FirebaseListObservable } from 'angularfire2/database';
@@ -16,7 +16,7 @@ export class ChartComponent implements OnInit {
 
   public nowDate: Date = new Date(); //right now.
 
-  public channels: FirebaseListObservable<any>; //list of channels 
+  public channels: FirebaseListObservable<ChannelProps[]>; //list of channels 
 
 
   private dragging: boolean = false; //if there is something being dragged.
@@ -76,7 +76,7 @@ export class ChartComponent implements OnInit {
     event.stopPropagation();
   }
 
-  public addChannel(channel: Channel) {
+  public addChannel(channel: ChannelProps) {
     this.channels.push(channel);
   }
 

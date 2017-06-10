@@ -3,7 +3,7 @@ import * as _ from 'underscore';
 import { FirebaseObjectObservable } from 'angularfire2/database';
 
 
-export class Channelprops {
+export class ChannelProps {
     public name: string;
 }
 
