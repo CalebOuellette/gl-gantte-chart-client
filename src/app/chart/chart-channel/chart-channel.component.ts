@@ -17,7 +17,7 @@ export class ChartChannelComponent implements OnInit {
 
 
   private dragging: boolean = false; //if there is something being dragged.
-  private dragItem: Task; //the item being dragged.
+  private dragItem: any; //the item being dragged.
 
   private last: MouseEvent; //last event to calc move distance
 
@@ -71,18 +71,22 @@ export class ChartChannelComponent implements OnInit {
   @HostListener('mousemove', ['$event'])
   onMousemove(event: MouseEvent) {
     if (this.dragging && this.dragEventType) {
+      var dbTask = this.projectService.fireDb.object(this.projectService.PROJECTPATH + this.projectService.projectid + '/tasks/' + this.dragItem.$key);
       if (this.dragEventType == 1) {
-        this.dragItem.totalTime = this.dragItem.totalTime + ((event.clientX - this.last.clientX) * this.zoomScale);
+        dbTask.update({ totalTime: this.dragItem.totalTime + ((event.clientX - this.last.clientX) * this.zoomScale)}); //update Server
+        this.dragItem.totalTime = this.dragItem.totalTime + ((event.clientX - this.last.clientX) * this.zoomScale); //update Local
         if (this.dragItem.totalTime < (this.zoomScale * 40)) {
           this.dragItem.totalTime = this.zoomScale * 40;
         } else {
-       //   this.dragItem.parentChannel.adjusTasksAfter(this.dragItem, ((event.clientX - this.last.clientX) * this.zoomScale));
+          //   this.dragItem.parentChannel.adjusTasksAfter(this.dragItem, ((event.clientX - this.last.clientX) * this.zoomScale));
         }
         this.last = event;
       }
       else if (this.dragEventType == 2) {
-        // this.dragItem.startDate = new Date(this.dragItem.startDate.getTime() - ((event.clientX - this.last.clientX) * this.zoomScale));
-     //   this.dragItem.parentChannel.adjustAllTaskTimes(((event.clientX - this.last.clientX) * this.zoomScale));
+         dbTask.update({ startDate: this.dragItem.startDate - ((event.clientX - this.last.clientX) * this.zoomScale)});
+    
+        this.dragItem.startDate = this.dragItem.startDate - ((event.clientX - this.last.clientX) * this.zoomScale);
+        //   this.dragItem.parentChannel.adjustAllTaskTimes(((event.clientX - this.last.clientX) * this.zoomScale));
         this.last = event;
       }
       else if (this.dragEventType == 3) {
@@ -94,9 +98,6 @@ export class ChartChannelComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   doSomething(event) {
-    // console.debug("Scroll Event", document.body.scrollTop);
-    // see András Szepesházi's comment below
-
     console.log("Scroll Event", window.pageYOffset);
   }
 

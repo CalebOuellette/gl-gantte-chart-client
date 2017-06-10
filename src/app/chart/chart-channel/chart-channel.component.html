@@ -1,14 +1,11 @@
-
-
-
 <!--<div>
       <div class="info boldText" *ngIf="channel.currentTask" [ngStyle]="{ left: (nowOffset - 50) + 'px' }">
         Task {{channel.currentTask.id}} <br>
         <span class="percent">{{(( nowDate.getTime() - channel.currentTask.startDate.getTime() ) / channel.currentTask.totalTime)| percentRound | percent: '1.0-0' }}</span>
       </div>
       -->
-<div>
-  <div *ngFor="let item of taskList | async" [ngStyle]="{ left: (nowOffset + (  -1 * (nowDate.getTime() - (item.startDate | stringToDate).getTime()) / zoomScale) ) +'px', 'background-color': item.color, 'width': (item.totalTime / zoomScale) + 'px' }"
+<div id="conatin">
+  <div *ngFor="let item of taskList | async" [ngStyle]="{ left: (nowOffset + ( (nowDate.getTime() - item.startDate) / zoomScale) ) + 'px', 'background-color': item.color, 'width': (item.totalTime / zoomScale) + 'px' }"
     class="boxL task">
     <div (mousedown)="taskMove(item, $event)" class="dragZone">
       <div class="boxLTitle" *ngIf="!channel.currentTask || channel.currentTask.id != item.id">
@@ -17,8 +14,6 @@
     </div>
     <div (mousedown)="taskExpand(item, $event)" class="expandZone">
     </div>
-
-
   </div>
   <!--<div (click)="addTask(channel)" class="addButton" [ngStyle]="{ left: ((nowOffset + (  -1 * (nowDate.getTime() - channel.lastTask.startDate.getTime() - channel.lastTask.totalTime ) / zoomScale) )+ 10) +'px'}">
     +
