@@ -48,27 +48,25 @@ export class ChartChannelComponent implements OnInit {
         equalTo: this.channelID
       }
     });
-
-
   }
 
 
 
-  @HostListener('mouseup')
+  @HostListener('window:mouseup')
   onMouseup(event: MouseEvent) {
     this.dragging = false;
     this.dragItem = null;
     this.dragEventType = 0;
   }
 
-  @HostListener('mouseleave')
+  @HostListener('window:mouseleave')
   onMouseLeave(event: MouseEvent) {
     this.dragging = false;
     this.dragItem = null;
     this.dragEventType = 0;
   }
 
-  @HostListener('mousemove', ['$event'])
+  @HostListener('window:mousemove', ['$event'])
   onMousemove(event: MouseEvent) {
     if (this.dragging && this.dragEventType) {
       var dbTask = this.projectService.fireDb.object(this.projectService.PROJECTPATH + this.projectService.projectid + '/tasks/' + this.dragItem.$key);
@@ -96,16 +94,6 @@ export class ChartChannelComponent implements OnInit {
     }
   }
 
-  @HostListener('window:scroll', ['$event'])
-  doSomething(event) {
-    console.log("Scroll Event", window.pageYOffset);
-  }
-
-
-  @HostListener('mousedown', ['$event'])
-  onMousedown(event: MouseEvent) {
-
-  }
 
   public taskExpand(task: Task, event: MouseEvent) {
     this.dragItem = task;
