@@ -124,11 +124,11 @@ export class ChartChannelComponent implements OnInit {
   public addTask(channel: Channel) {
     var date;
     if (channel.lastTask) {
-      date = channel.lastTask.startDate.getTime;
+      date = channel.lastTask.startDate;
     } else {
       date = new Date();
     }
-    var t: Task = { id: 'D', color: "#005757", startDate: new Date(channel.lastTask.startDate.getTime() + channel.lastTask.totalTime + 1), totalTime: 345600000, channelID: this.channelID };
+    var t: Task = { name: "new Name", color: "#005757", startDate: channel.lastTask.startDate + channel.lastTask.totalTime + 1, totalTime: 345600000, channelID: this.channelID };
     channel.addTask(t);
   }
 

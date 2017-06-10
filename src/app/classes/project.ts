@@ -11,10 +11,4 @@ class ProjectProps {
 export class Project {
 
 
-    constructor() {
-    }
-    public data: FirebaseObjectObservable<ProjectProps>;    
-    public channels: FirebaseListObservable<ProjectProps>;
-    public tasks: FirebaseListObservable<ProjectProps>;
-
 }

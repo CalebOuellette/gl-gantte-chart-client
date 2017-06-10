@@ -21,7 +21,7 @@ export class Channel {
 
     public adjustTaskTimes(adjustment: number, taskArray: Array<Task>) {
         taskArray.forEach((t: Task) => {
-            t.startDate = new Date(t.startDate.getTime() + adjustment);
+            t.startDate = t.startDate + adjustment;
         });
     }
 
@@ -43,7 +43,7 @@ export class Channel {
 
     public getCurrentTask(): Task {
         return _.find(this.tasks, (item: Task) => {
-            if (item.startDate < new Date() && (item.startDate.getTime() + item.totalTime) > new Date().getTime()) {
+            if (item.startDate < new Date().getTime() && (item.startDate + item.totalTime) > new Date().getTime()) {
                 return true;
             }
         });

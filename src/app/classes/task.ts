@@ -1,22 +1,18 @@
 import { Channel } from './channel';
 
 export class TaskProps{
-  public id: string;  
   public color: string;
-  public startDate: Date;
+  public startDate: number;
   public totalTime: number;
-  public channelID?: string;
-  public nextTaskID?: string;
-  public preTaskID?: string;
+  public channelID: string;
+  public name: string;
 }
 
 
 export class Task{
-  public id: string;  
   public color: string;
-  public startDate: Date;
+  public startDate: number;
   public totalTime: number;
-  public channelID?: string;
-  public nextTaskID?: string;
-  public preTaskID?: string;
+  public channelID: string;
+  public name: string;
 }

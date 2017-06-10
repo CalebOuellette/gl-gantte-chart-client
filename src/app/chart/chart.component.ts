@@ -33,27 +33,8 @@ export class ChartComponent implements OnInit {
 
 
   constructor(public projectService: ProjectService) {
-    var c = new Channel();
-    c.name = "Patch 1";
-    c.tasks = [
-      { id: 'A', color: "#5BC0EB", startDate: new Date(), totalTime: 345600000 },
-      { id: 'B', color: "#FDE74C", startDate: new Date(), totalTime: 345600000 }
-    ];
-    c.id = "1234";
-  ///  c.setCurrentTask();
-  //  this.channels.push(c);
-    var c2 = new Channel();
-    c2.id = "12345";
-    c2.name = "Feature 3"
-    c2.tasks = [
-      { id: 'C', color: "#FA7921", startDate: new Date(), totalTime: 345600000 }
-    ]
-    c2.setCurrentTask();
-//    this.channels.push(c2);
-
        this.channels = projectService.channels;
-      
-
+    
   }
 
 
