@@ -1,5 +1,3 @@
-import { Channel } from './channel';
-
 export class TaskProps{
   public color: string;
   public startDate: number;

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from '../services/project.service';
 @Component({
   selector: 'gl-chart-page',
@@ -9,19 +9,25 @@ import { ProjectService } from '../services/project.service';
 })
 export class ChartpageComponent implements OnInit, OnDestroy {
 
-  constructor(private projectService: ProjectService, private route: ActivatedRoute) { 
-    
+  constructor(private projectService: ProjectService, private route: ActivatedRoute, private router: Router) {
+
 
   }
 
   public loadedProject;
   private sub: any;
 
-  ngOnInit() {    
+  ngOnInit() {
 
-      this.sub = this.route.params.subscribe(params => {       
-        this.projectService.loadProjectByID(params['id']);
-      });      
+    this.sub = this.route.params.subscribe(params => {
+      if (params['id']) {
+        this.projectService.loadProjectByUserID(params['id']);
+      }
+      else {
+        this.router.navigate(['']);
+      }
+
+    });
   }
 
 

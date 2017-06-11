@@ -37,9 +37,7 @@ export class ChartChannelComponent implements OnInit {
   constructor(public projectService: ProjectService) { }
 
   ngOnInit() {
-
     this.channel = this.projectService.fireDb.object(this.projectService.PROJECTPATH + this.projectService.projectid + '/chennels/' + this.channelID);
-
     this.taskList = this.projectService.fireDb.list(this.projectService.PROJECTPATH + this.projectService.projectid + '/tasks', {
       query: {
         orderByChild: 'channelID',

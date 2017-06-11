@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 })
 export class LandingPageComponent implements OnInit {
 
-  public projectCode: string = "";
+  public userCode: string = "";
 
   constructor(private router: Router) { }
 
@@ -17,7 +17,7 @@ export class LandingPageComponent implements OnInit {
   public projectCodeClick(){
     //check if good code
     //redirect to page.
-    this.router.navigate(['/ChartPage']);
+    this.router.navigate(['/ChartPage/' + this.userCode]);
   }
 
   
