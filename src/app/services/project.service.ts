@@ -24,25 +24,23 @@ export class ProjectService {
   }
 
   public authByToken(id: string) {
-        var token = this.afAuth.auth.createCustomToken(id);
-        this.afAuth.auth.signInWithCustomToken(token);
+    var token = this.afAuth.auth.createCustomToken(id);
+    this.afAuth.auth.signInWithCustomToken(token);
   }
 
 
   public loadProjectByUserID(id: string) {
-    this.afAuth.auth.signInAnonymously().then(()=>{                
+    this.afAuth.auth.signInAnonymously().then(() => {
       this.user = this.fireDb.object(this.USERPATH + id);
       this.user.subscribe((value: UserProps) => {
         if (value.projectID) {
           this.loadProjectByID(value.projectID);
         }
-        if(value.write === true){
-          this.userCanWrite = true;
-        }
-      });    
+        this.userCanWrite = value.write;
+      });
     });
-    
-    
+
+
   }
 
   public loadProjectByID(id: string) {

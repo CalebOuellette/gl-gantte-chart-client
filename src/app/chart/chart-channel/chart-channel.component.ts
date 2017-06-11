@@ -64,7 +64,7 @@ export class ChartChannelComponent implements OnInit {
 
   @HostListener('window:mousemove', ['$event'])
   onMousemove(event: MouseEvent) {
-    if (this.dragging && this.dragEventType) {
+    if (this.dragging && this.dragEventType && this.projectService.userCanWrite) {
       var dbTask = this.projectService.fireDb.object(this.projectService.PROJECTPATH + this.projectService.projectid + '/tasks/' + this.dragItem.$key);
       if (this.dragEventType == 1) {
         dbTask.update({ totalTime: this.dragItem.totalTime + ((event.clientX - this.last.clientX) * this.zoomScale)}); //update Server
