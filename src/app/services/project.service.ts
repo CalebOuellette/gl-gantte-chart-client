@@ -51,4 +51,11 @@ export class ProjectService {
     this.isLoaded = true;
   }
 
+  public createProject(proj: ProjectProps){
+    this.fireDb.list(this.PROJECTPATH).push(proj).then((success)=>{
+      debugger;
+    });
+  }
+
+
 }

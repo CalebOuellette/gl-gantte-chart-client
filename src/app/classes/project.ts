@@ -6,7 +6,8 @@ export class ProjectProps {
     public name: string;
     public tasks;
     public channel;
-    public readers: string[];   
+    public readers: {};   
+    public writters: {};
     public isPublic: boolean; 
 }
 
