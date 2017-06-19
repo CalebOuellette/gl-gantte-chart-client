@@ -4,8 +4,7 @@ import { ProjectService } from '../services/project.service';
 @Component({
   selector: 'gl-chart-page',
   templateUrl: './chart-page.component.html',
-  styleUrls: ['./chart-page.component.css'],
-  providers: [ProjectService]
+  styleUrls: ['./chart-page.component.css']
 })
 export class ChartpageComponent implements OnInit, OnDestroy {
 
