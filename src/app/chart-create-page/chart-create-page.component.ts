@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectProps } from '../classes/project';
+import { Router } from '@angular/router';
+import { ProjectService } from '../services/project.service';
 @Component({
   selector: 'gl-chart-create-page',
   templateUrl: './chart-create-page.component.html',
@@ -10,16 +12,16 @@ export class ChartCreatePageComponent implements OnInit {
 
   public projectName: string;
 
-  constructor() { }
+  constructor(private projectService: ProjectService, private router: Router) { }
 
   ngOnInit() {
   }
 
   public createProject(){
-    var p = new ProjectProps;
+    var p = new ProjectProps();
     p.name = this.projectName;
     p.isPublic = true;
-    
+    this.projectService.createProject(p);
   }
 
 }

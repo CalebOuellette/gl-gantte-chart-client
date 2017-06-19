@@ -52,8 +52,13 @@ export class ProjectService {
   }
 
   public createProject(proj: ProjectProps){
+    //create Promise1
+
     this.fireDb.list(this.PROJECTPATH).push(proj).then((success)=>{
       debugger;
+      //create IDs
+      //.then
+        //return Promise1
     });
   }
 
