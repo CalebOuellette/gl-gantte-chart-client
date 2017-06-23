@@ -93,11 +93,14 @@ export class ProjectService {
         this.loadProjectByID(success.key);
         this.createProjectUser(success.key, true).then(success => {
           this.project.update({ writter: success });
-          this.loadUser(success);
+          this.loadUser(success).then(success=>{
+            resolve(true);
+          });          
         });
         this.createProjectUser(success.key, false).then(success => {
           this.project.update({ reader: success });
         });
+
       });
     });
   }

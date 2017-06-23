@@ -22,7 +22,11 @@ export class ChartCreatePageComponent implements OnInit {
     p.name = this.projectName;
     p.isPublic = true;
     p.isCreated = true;
-    this.projectService.createProject(p);
+    this.projectService.createProject(p).then((success)=>{
+      this.router.navigate(['/ChartPage/']);
+    }, fail=>{
+
+    });
   }
 
 }
