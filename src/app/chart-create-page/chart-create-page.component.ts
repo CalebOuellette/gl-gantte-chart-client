@@ -21,6 +21,7 @@ export class ChartCreatePageComponent implements OnInit {
     var p = new ProjectProps();
     p.name = this.projectName;
     p.isPublic = true;
+    p.isCreated = true;
     this.projectService.createProject(p);
   }
 

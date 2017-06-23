@@ -9,6 +9,7 @@ export class ProjectProps {
     public readers: {};   
     public writters: {};
     public isPublic: boolean; 
+    public isCreated: boolean;
 }
 
 
