@@ -20,7 +20,11 @@ export class ChartpageComponent implements OnInit, OnDestroy {
 
     this.sub = this.route.params.subscribe(params => {
       if (params['id']) {
-        this.projectService.loadProjectByUserID(params['id']);
+        this.projectService.loadProjectByUserID(params['id']).then(success =>{
+
+        }, fail =>{
+          this.router.navigate(['']);  
+        });
       }
       else {
         this.router.navigate(['']);
