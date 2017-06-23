@@ -1,21 +1,33 @@
 @import './box';
 @import './vars';
 
-.glButton{
-    @extend .boxLR ;
-    width: 150px;
-    height: 30px;
+.glButtonBase{
+   
+    min-width: 150px;
+    min-height: 30px;
     color: $black;
     line-height: 30px;
     padding-left: 15px;
      font-weight: 800;
+     font-size: 15px;
      transition: box-shadow .2s;
      user-select: none;  
      position: relative;
      left: 0px;
      top: 0px;
+     text-align: left;
+     border: none;
 }
 
+.glButton{
+  @extend .glButtonBase;
+   @extend .boxL ;
+}
+
+.glButtonLR{
+  @extend .glButtonBase;
+   @extend .boxLR ;
+}
 
 .glButton:hover {  
   box-shadow: $hoverShadow;  
@@ -26,16 +38,23 @@
 }
 
 .glInput{
-    @extend .boxLR ;
-     width: 150px;
+    @extend .boxL;
+    width: 150px;
     height: 30px;
     color: $black;
     line-height: 30px;
-      padding-left: 15px;
-      color: white;
+    padding-left: 15px;
+    color: white;
     outline: none;
     border: solid white;
     background-color: transparent;
     font-weight: 800;
     font-size: 15px;
+}
+
+.glInput-drk{
+  @extend .glInput;
+  color: black;
+  border: solid black;
+
 }

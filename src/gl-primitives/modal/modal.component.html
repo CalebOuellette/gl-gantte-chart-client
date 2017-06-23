@@ -1,10 +1,10 @@
 <div id="outer" *ngIf="_isShowing">
-  <div *ngIf="_isShowing" id="shading" (click)="hide()">
+  <div *ngIf="_isShowing" id="shading" (click)="hideByBackgroundClick()">
 
   </div>
 
 
-  <div id="userContent">
+  <div id="userContent" class="roundedCorners">
     <ng-content></ng-content>
   </div>
 

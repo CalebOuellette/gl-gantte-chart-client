@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'gl-modal',
@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ModalComponent implements OnInit {
 
   public _isShowing: boolean = false;
-
+  @Input() public canHideByBackground: boolean = true;
   constructor() { }
 
   ngOnInit() {
@@ -29,4 +29,11 @@ export class ModalComponent implements OnInit {
       this.show();
     }
   }
+
+  public hideByBackgroundClick(){
+    if(this.canHideByBackground){
+      this.hide();
+    }
+  }
+
 }

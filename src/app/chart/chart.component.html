@@ -3,9 +3,9 @@
     {{(projectService.project | async).name}}
   </div>  
   <div id="verticalNowLine" [ngStyle]="{ left: nowOffset + 'px' }"></div>
-   <div class="glButton" [ngStyle]="{ left: (nowOffset + 8) + 'px' }" (click)="addChannel()">
+   <button class="glButton" [ngStyle]="{ left: (nowOffset + 8) + 'px' }" (click)="channelCreateModal.show()">
     Add Channel
-  </div>
+  </button>
 
   <div *ngFor="let channel of projectService.channels | async; let ix = index;" [ngStyle]="{ top: (90 * ix) + 100 + 'px' }" class="channel">
     <div [ngStyle]="{ left: nowOffset + 'px' }" class="channelName boldText">
@@ -15,6 +15,11 @@
   </div>
 
 </div>
+
+<gl-modal #channelCreateModal>
+  <gl-channel-create (onChannelCreate)="channelCreateModal.hide()"></gl-channel-create>
+</gl-modal>
+
 
 <div *ngIf="!(projectService.project | async)" class="centerElement">
 

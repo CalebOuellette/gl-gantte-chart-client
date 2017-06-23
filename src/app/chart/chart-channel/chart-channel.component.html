@@ -9,7 +9,7 @@
     <div (mousedown)="taskExpand(item, $event)" class="expandZone">
     </div>
   </div>
-  <!--<div (click)="addTask(channel)" class="addButton" [ngStyle]="{ left: ((nowOffset + (  -1 * (nowDate.getTime() - channel.lastTask.startDate.getTime() - channel.lastTask.totalTime ) / zoomScale) )+ 10) +'px'}">
+  <div (click)="addTask(channel)" class="addButton" [ngStyle]="{ left: (nowOffset + 10) +'px'}">
     +
-  </div>-->
+  </div>
 </div>

@@ -9,9 +9,8 @@
 }
 
 #userContent{    
-    padding: 50px;
+    padding: 20px;
     background-color: white;
-    border-radius: 5px;
     color: black;
     position: absolute;
 }

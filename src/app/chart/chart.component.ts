@@ -1,9 +1,11 @@
-import { Component, OnInit, HostListener, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, HostListener, ViewEncapsulation, ViewChild } from '@angular/core';
 import { TaskProps } from '../classes/task';
 import { ChannelProps } from '../classes/channel';
 import * as _ from 'underscore';
 import { ProjectService } from '../services/project.service';
 import { FirebaseListObservable } from 'angularfire2/database';
+import { ModalComponent } from '../../gl-primitives';
+
 @Component({
   selector: 'gl-chart',
   templateUrl: './chart.component.html',
@@ -12,7 +14,7 @@ import { FirebaseListObservable } from 'angularfire2/database';
 })
 export class ChartComponent implements OnInit {
 
-
+  @ViewChild("channelCreateModal") channelCreateModal: ModalComponent;
 
   public nowDate: Date = new Date(); //right now.
 
@@ -33,8 +35,7 @@ export class ChartComponent implements OnInit {
 
 
   constructor(public projectService: ProjectService) {
-       this.channels = projectService.channels;
-    
+       this.channels = projectService.channels;    
   }
 
 

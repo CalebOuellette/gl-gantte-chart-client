@@ -17,6 +17,9 @@ $borderRadius: 10px;
     border-radius: 0 $borderRadius 0 $borderRadius;
 }
 
+.roundedCorners{
+    border-radius: $borderRadius $borderRadius $borderRadius $borderRadius;
+}
 
 .boxLTitle{
     
