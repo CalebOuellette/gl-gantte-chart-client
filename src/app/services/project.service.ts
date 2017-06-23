@@ -15,10 +15,12 @@ export class ProjectService {
   public channels: FirebaseListObservable<ChannelProps[]>;
   public tasks: FirebaseListObservable<TaskProps[]>;
   public isLoaded: boolean = false;
+
+
   public user: FirebaseObjectObservable<UserProps>;
-
-
+  public readUser: FirebaseObjectObservable<UserProps>;
   public userCanWrite: boolean;
+
 
   constructor(public fireDb: AngularFireDatabase, public afAuth: AngularFireAuth) {
   }
@@ -29,36 +31,91 @@ export class ProjectService {
   }
 
 
-  public loadProjectByUserID(id: string) {
-    this.afAuth.auth.signInAnonymously().then(() => {
-      this.user = this.fireDb.object(this.USERPATH + id);
-      this.user.subscribe((value: UserProps) => {
-        if (value.projectID) {
-          this.loadProjectByID(value.projectID);
-        }
-        this.userCanWrite = value.write;
+  public loadProjectByUserID(id: string): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.loadUser(id).then(() => {
+        this.user.subscribe((value: UserProps) => {
+          if (value.isCreated) {
+            if (value.projectID) {
+              this.userCanWrite = value.write;
+              this.loadProjectByID(value.projectID).then(success => {
+                resolve(true);
+              }, fail => {
+                reject("Error loading project");
+              });
+            }
+          }
+          else {
+            reject("Error loading user");
+            console.warn("Error loading User of id: " + id);
+          }
+        });
       });
     });
-
-
   }
 
-  public loadProjectByID(id: string) {
-    this.project = this.fireDb.object(this.PROJECTPATH + id);
-    this.channels = this.fireDb.list(this.PROJECTPATH + id + '/channels');
-    this.tasks = this.fireDb.list(this.PROJECTPATH + id + '/tasks');
-    this.projectid = id;
-    this.isLoaded = true;
+  public loadProjectByID(id: string): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.projectid = id;
+      this.project = this.fireDb.object(this.PROJECTPATH + id);
+      this.project.subscribe((proj: ProjectProps) => {
+        if (proj.isCreated) {
+          this.isLoaded = true;
+          this.channels = this.fireDb.list(this.PROJECTPATH + id + '/channels');
+          this.tasks = this.fireDb.list(this.PROJECTPATH + id + '/tasks');
+          resolve(true);
+        } else {
+          console.warn("Error loading Project of id: " + id);
+          reject("Error loading");
+        }
+      });
+    });
   }
 
-  public createProject(proj: ProjectProps){
-    //create Promise1
+  public loadUser(id: string): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.afAuth.auth.signInAnonymously().then(() => {
+        this.user = this.fireDb.object(this.USERPATH + id);
+        resolve(true);
+      }, fail => {
+        reject("error loading user");
+        console.warn("failed to load user id:" + id);
+      });
+    });
+  }
 
-    this.fireDb.list(this.PROJECTPATH).push(proj).then((success)=>{
-      debugger;
-      //create IDs
-      //.then
-        //return Promise1
+
+  public createProject(proj: ProjectProps): Promise<boolean> {
+    //TODO make one transaction
+    //If some call fails we will end up with bad data
+    return new Promise((resolve, reject) => {
+      this.fireDb.list(this.PROJECTPATH).push(proj).then((success) => {
+        this.loadProjectByID(success.key);
+        this.createProjectUser(success.key, true).then(success => {
+          this.project.update({ writter: success });
+          this.loadUser(success);
+        });
+        this.createProjectUser(success.key, false).then(success => {
+          this.project.update({ reader: success });
+        });
+      });
+    });
+  }
+
+  public createProjectUser(projectID: string, writter: boolean): Promise<string> {
+    return new Promise((resolve, reject) => {
+      var user = new UserProps();
+      user.isCreated = true;
+      user.projectID = projectID;
+      user.read = true;
+      user.write = writter;
+
+      this.fireDb.list(this.USERPATH).push(user).then((success) => {
+        resolve(success.key);
+      }, fail => {
+        console.warn("Error creating user for project" + projectID);
+        reject("Error creating user");
+      });
     });
   }
 
