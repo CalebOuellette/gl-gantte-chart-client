@@ -1,0 +1,5 @@
+<div *ngIf="_isShowing" id="shading" (click)="hide()">
+  <div id="content" (click)="contentClick($event)">
+    <ng-content></ng-content>
+  </div>
+</div>
