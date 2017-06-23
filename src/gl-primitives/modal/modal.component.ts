@@ -7,9 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalComponent implements OnInit {
 
-
-
-
   public _isShowing: boolean = false;
 
   constructor() { }
@@ -32,9 +29,4 @@ export class ModalComponent implements OnInit {
       this.show();
     }
   }
-
-  public contentClick(event: Event){
-    event.stopPropagation();
-  }
-
 }

@@ -5,15 +5,25 @@
     position: fixed;
     left: 0;
     top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  
 }
 
-#content{    
+#userContent{    
     padding: 50px;
     background-color: white;
     border-radius: 5px;
     color: black;
+    position: absolute;
+}
+
+
+#outer{
+    width: 100vw;
+    height: 100vh;
     position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
 }
