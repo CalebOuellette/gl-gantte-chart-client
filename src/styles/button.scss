@@ -29,6 +29,12 @@
    @extend .boxLR ;
 }
 
+.glButton-inverse{
+  @extend .glButton;
+  background-color: $black;
+  color: $white;
+}
+
 .glButton:hover {  
   box-shadow: $hoverShadow;  
 }
@@ -52,7 +58,7 @@
     font-size: 15px;
 }
 
-.glInput-drk{
+.glInput-inverse{
   @extend .glInput;
   color: black;
   border: solid black;

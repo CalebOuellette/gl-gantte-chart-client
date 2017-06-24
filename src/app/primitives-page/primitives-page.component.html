@@ -1,65 +1,129 @@
+<div id="whiteBG"></div>
 <div class="center">
-  <h1>
-    Primitives page
-  </h1>
+  <div id="dark">
 
-  <h3>
-    Box Shape
-  </h3>
+    <h1>
+      Primitives page
+    </h1>
 
-  <div class="bar boxL">
+    <h3>
+      Box Shape
+    </h3>
 
-  </div>
+    <div class="bar boxL">
 
-  <h3>
-    Chart Task
-  </h3>
+    </div>
 
-  <div class="bar task boxL">
-    <div class="boxLTitle">Dev Work</div>
-    <div class="boxLSubText">60hrs</div>
-  </div>
+    <h3>
+      Chart Task
+    </h3>
 
+    <div class="bar task boxL">
+      <div class="boxLTitle">Dev Work</div>
+      <div class="boxLSubText">60hrs</div>
+    </div>
 
+    <h3>
+      Button
+    </h3>
 
-  <h3>
-    Button
-  </h3>
-
-  <div class="glButton">
+    <button class="glButton">
     Click it!
-  </div>
+  </button>
 
-  <h3>
-    Input
-  </h3>
+    <h3>
+      Input
+    </h3>
 
-  <div >
-    <input type="text" name="test" value="Hello" class="glInput">
-  </div>
+    <div>
+      <input type="text" name="test" value="Hello" class="glInput">
+    </div>
 
 
-  <h3>
-    Loading Bars
-  </h3>
+    <h3>
+      Loading Bars
+    </h3>
 
-  <loading-bars></loading-bars>
+    <loading-bars></loading-bars>
 
-  <h3>
-    Modal
-  </h3>
+    <h3>
+      Modal
+    </h3>
 
-  
-  <div class="glButton" style="background-color: rgb(3, 206, 164); color: white;" (click)="myModal.show()">
+
+    <button class="glButton" style="background-color: rgb(3, 206, 164); color: white;" (click)="myModal.show()">
     Show Modal
+  </button>
+
+
+    <gl-modal #myFirstModal>
+      Hello World
+
+    </gl-modal>
+
   </div>
 
+  <div id="light" class="inverse">
 
-  <gl-modal #myFirstModal>
-    Hello World
+    <h1>
+      Primitives page
+    </h1>
 
-  </gl-modal>
+    <h3>
+      Box Shape
+    </h3>
+
+    <div class="bar boxL">
+
+    </div>
+
+    <h3>
+      Chart Task
+    </h3>
+
+    <div class="bar task boxL">
+      <div class="boxLTitle">Dev Work</div>
+      <div class="boxLSubText">60hrs</div>
+    </div>
+
+    <h3>
+      Button
+    </h3>
+
+    <button class="glButton-inverse">
+    Click it!
+  </button>
+
+    <h3>
+      Input
+    </h3>
+
+    <div>
+      <input type="text" name="test" value="Hello" class="glInput-inverse">
+    </div>
 
 
+    <h3>
+      Loading Bars
+    </h3>
+
+    <loading-bars></loading-bars>
+
+    <h3>
+      Modal
+    </h3>
+
+
+    <button class="glButton" style="background-color: rgb(3, 206, 164); color: white;" (click)="myModal.show()">
+    Show Modal
+  </button>
+
+
+    <gl-modal #myFirstModal>
+      Hello World
+
+    </gl-modal>
+
+  </div>
 
 </div>

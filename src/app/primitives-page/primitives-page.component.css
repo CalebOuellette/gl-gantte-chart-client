@@ -4,9 +4,31 @@
 }
 
 .center{
-    margin: 100px;
+    
+    display: flex;
+    position: relative;
 }
 
 .task{
     background-color: #FA7921;
+}
+
+#dark{
+    margin: 100px;
+    width: 50%;
+}
+
+#light{
+    margin: 100px;
+    width: 50%;
+    background-color: white;
+}
+
+#whiteBG{
+    position: fixed;
+    left: 50%;
+    top: 0;
+    width: 50%;
+    height: 100vh;
+    background-color: white;
 }

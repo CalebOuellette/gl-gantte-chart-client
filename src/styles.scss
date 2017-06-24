@@ -4,17 +4,22 @@
 @import "./styles/vars";
 @import "./styles/box";
 @import "./styles/button";
+@import "./styles/text";
+@import "./styles/reset";
 
 
 body{
     background-color: $black;
-    color: #fff;  
+    color: $white;  
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     border: 0;
     
 }
 
+.inverse{
+    color: $black;
+}
 
 .centerElement{
     position: absolute;
