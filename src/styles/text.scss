@@ -10,3 +10,14 @@
 .normalText{
     font-size: 18px;  
 }
+
+
+.header{
+    @extend .boldText;
+    font-size: 25px;  
+}
+
+.subText{
+    @extend .normalText;
+    font-size: 12px;
+}

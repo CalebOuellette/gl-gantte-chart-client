@@ -1,13 +1,17 @@
-
-<div>
-  <h3> Create Channel </h3>
-</div>
-<div id="contols">
-  Channel Name:
-  <input type="text" [(ngModel)]="name" class="glInput-inverse">
-</div>
-<div id="createSection">
-  <button (click)="addChannel()" class="glButton">
+<div id="channelCreate">
+  <div class="header">
+     Create Channel 
+  </div>
+  <div class="subText">
+    A channel is used to organize tasks of sequetial work.
+  </div>
+  <div id="controls">
+  
+    <input type="text" placeholder="Name" [(ngModel)]="name" style="width: 300px" class="glInput-inverse">
+  </div>
+  <div id="createSection">
+    <button (click)="addChannel()" class="glButton-inverse">
     Create my channel
   </button>
+  </div>
 </div>

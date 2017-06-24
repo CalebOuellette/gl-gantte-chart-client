@@ -1,4 +1,14 @@
 #createSection{
-    text-align: left;
-    margin-top: 5px;
+    text-align: right;
+    margin-top: 20px;
 }
+
+#channelCreate{
+    width: 400px;
+}
+
+#controls{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+

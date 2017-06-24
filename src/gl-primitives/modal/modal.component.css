@@ -1,3 +1,16 @@
+
+#outer{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+   
+}
+
 #shading{
     width: 100vw;
     height: 100vh;
@@ -13,16 +26,6 @@
     background-color: white;
     color: black;
     position: absolute;
+    box-shadow: 10px 10px 19px rgba(0, 0, 0, 1);  
 }
 
-
-#outer{
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    left: 0;
-    top: 0;
-}
