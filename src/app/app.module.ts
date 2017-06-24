@@ -26,6 +26,7 @@ import { ChartChannelComponent } from './chart/chart-channel/chart-channel.compo
 import { StringToDatePipe } from './pipes/string-to-date/string-to-date.pipe';
 import { ChannelCreateComponent } from './chart/channel-create/channel-create.component';
 import { TaskCreateComponent } from './chart/task-create/task-create.component';
+import { TaskInfoComponent } from './task-info/task-info.component';
 
 
 @NgModule({
@@ -41,7 +42,7 @@ import { TaskCreateComponent } from './chart/task-create/task-create.component';
     TestPageComponent,
     FltrChannelIdPipe,
     ChartChannelComponent,    
-    StringToDatePipe, ChannelCreateComponent, TaskCreateComponent    
+    StringToDatePipe, ChannelCreateComponent, TaskCreateComponent, TaskInfoComponent    
   ],
   imports: [
     BrowserModule,

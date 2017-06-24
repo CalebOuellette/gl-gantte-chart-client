@@ -4,6 +4,7 @@ export class TaskProps{
   public totalTime: number;
   public channelID: string;
   public name: string;
+  public description?: string;
 }
 
 
@@ -13,4 +14,5 @@ class Task{
   public totalTime: number;
   public channelID: string;
   public name: string;
+  public description?: string;
 }
