@@ -30,7 +30,7 @@ export class ChartComponent implements OnInit {
 
   public nowOffset: number = 325; //offset of the now point.
 
-  public zoomScale: number = 1000000; //MS per Pixel
+  public zoomScale: number = 1000000; //MS per Pixel http://demo.ganttelope.com/ChartPage/-KnMo0iGeWpmOD-LkKnY
 
   public dragEventType: number = 0; //TODO make an enum. this is the type of dragg happening. 
 
