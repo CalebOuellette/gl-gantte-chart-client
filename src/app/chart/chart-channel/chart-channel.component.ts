@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, HostListener, ViewChild } from '@angular/core';
-import { ProjectService } from '../../services/project.service';
+import { ProjectService } from '../../services';
 import { TaskProps } from '../../classes/task';
 import { ChannelProps } from '../../classes/channel';
 import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
@@ -137,14 +137,6 @@ export class ChartChannelComponent implements OnInit {
   }
 
 
-
-  public addTask(afterTask?: TaskProps) {
-    if (afterTask) {
-
-    } else {
-      var t: TaskProps = { name: "new Name", color: "#005757", startDate: new Date().getTime(), totalTime: 345600000, channelID: this.channelID };
-    }
-  }
 
 
 }

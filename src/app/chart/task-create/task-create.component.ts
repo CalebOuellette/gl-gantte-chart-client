@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { ProjectService } from '../../services/project.service';
+import { ProjectService, ColorService } from '../../services';
 import { TaskProps } from '../../classes/task';
 @Component({
   selector: 'gl-task-create',
@@ -14,7 +14,7 @@ export class TaskCreateComponent implements OnInit {
 
   public hours: number;
   public startDate: string;
-  constructor(public projectService: ProjectService) { }
+  constructor(public projectService: ProjectService,  public color: ColorService) { }
 
   ngOnInit() {
     this.task = new TaskProps();
@@ -25,7 +25,7 @@ export class TaskCreateComponent implements OnInit {
       this.task.totalTime = this.hours * 60 * 60 * 1000;
       this.task.startDate = new Date(this.startDate).getTime();
       this.task.channelID = this.channelID;
-      this.task.color = "#E55934";
+      this.task.color = this.color.getRandomHexColor();
       this.projectService.tasks.push(this.task).then(success =>{
         this.onChannelCreate.emit(success.key);
       });
