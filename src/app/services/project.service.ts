@@ -17,8 +17,7 @@ export class ProjectService {
   public isLoaded: boolean = false;
 
 
-  public user: FirebaseObjectObservable<UserProps>;
-  public readUser: FirebaseObjectObservable<UserProps>;
+  public user: FirebaseObjectObservable<UserProps>;  
   public userCanWrite: boolean;
 
 
@@ -76,7 +75,17 @@ export class ProjectService {
     return new Promise((resolve, reject) => {
       this.afAuth.auth.signInAnonymously().then(() => {
         this.user = this.fireDb.object(this.USERPATH + id);
-        resolve(true);
+        this.user.subscribe(success => {
+          if (success.isCreated) {
+            this.userCanWrite = success.write;            
+            resolve(true);
+          } else {
+            reject("error loading user");
+            console.warn("failed to load user id:" + id);
+          }
+
+        });
+
       }, fail => {
         reject("error loading user");
         console.warn("failed to load user id:" + id);
@@ -93,9 +102,9 @@ export class ProjectService {
         this.loadProjectByID(success.key);
         this.createProjectUser(success.key, true).then(success => {
           this.project.update({ writter: success });
-          this.loadUser(success).then(success=>{
+          this.loadUser(success).then(success => {
             resolve(true);
-          });          
+          });
         });
         this.createProjectUser(success.key, false).then(success => {
           this.project.update({ reader: success });
