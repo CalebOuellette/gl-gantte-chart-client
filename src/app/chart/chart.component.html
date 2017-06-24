@@ -1,15 +1,32 @@
 <div (mousedown)="timelineMove($event)" (scroll)="onScroll($event)" class="chart" *ngIf="(projectService.project | async)">
-  <div>
-    {{(projectService.project | async).name}}
-  </div>  
+  <div id="topBar">
+    <div class="header">
+      {{(projectService.project | async).name}}
+    </div>
+    <button class="glButton" (click)="zoomScale = zoomScale / 10">
+    Zoom in
+  </button>
+    <button class="glButton" (click)="zoomScale = zoomScale * 10">
+    Zoom out
+  </button>
+
+    <button class="glButton" (click)="linksModal.show()">
+  Get Links
+  </button>
+
+
+  </div>
+
+
   <div id="verticalNowLine" [ngStyle]="{ left: nowOffset + 'px' }"></div>
-   <button class="glButton" [ngStyle]="{ left: (nowOffset + 8) + 'px' }" (click)="channelCreateModal.show()">
+  <button class="glButton" [ngStyle]="{ left: (nowOffset + 8) + 'px' }" (click)="channelCreateModal.show()">
     Add Channel
   </button>
 
-  <div *ngFor="let channel of projectService.channels | async; let ix = index;" [ngStyle]="{ top: (90 * ix) + 100 + 'px' }" class="channel">
-  
-    <gl-chart-channel [nowOffset]="nowOffset" [zoomScale]="zoomScale" [channelID]="channel.$key"></gl-chart-channel>  
+  <div *ngFor="let channel of projectService.channels | async; let ix = index;" [ngStyle]="{ top: (90 * ix) + 130 + 'px' }"
+    class="channel">
+
+    <gl-chart-channel [nowOffset]="nowOffset" [zoomScale]="zoomScale" [channelID]="channel.$key"></gl-chart-channel>
   </div>
 
 </div>
@@ -18,6 +35,30 @@
   <gl-channel-create (onChannelCreate)="channelCreateModal.hide()"></gl-channel-create>
 </gl-modal>
 
+<gl-modal #linksModal>
+
+
+
+  <div class="header">
+    Sharable Links
+  </div>
+  <div class="subText">
+    Giving out these links will allow people to read or write to your project (there is no password protection).
+  </div>
+  <div id="controls">
+
+    <span class="label">Read & Write: </span> <input style="width: 500px" type="text" [ngModel]=" 'demo.ganttelope.com/ChartPage/' + (projectService.project | async)?.writter"
+      class="glInput-inverse" readonly><br>
+    <span class="label">Read Only: </span> <input style="width: 500px" type="text" [ngModel]=" 'demo.ganttelope.com/ChartPage/' + (projectService.project | async)?.reader"
+      class="glInput-inverse" readonly>
+  </div>
+  <div id="createSection">
+    <button (click)="linksModal.hide()" class="glButton-inverse">
+    Got it!
+  </button>
+  </div>
+
+</gl-modal>
 
 <div *ngIf="!(projectService.project | async)" class="centerElement">
 

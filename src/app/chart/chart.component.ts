@@ -15,6 +15,7 @@ import { ModalComponent } from '../../gl-primitives';
 export class ChartComponent implements OnInit {
 
   @ViewChild("channelCreateModal") channelCreateModal: ModalComponent;
+  @ViewChild("linksModal") linksModal: ModalComponent;
 
   public nowDate: Date = new Date(); //right now.
 

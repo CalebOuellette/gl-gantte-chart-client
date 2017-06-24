@@ -23,7 +23,7 @@ export class ChartCreatePageComponent implements OnInit {
     p.isPublic = true;
     p.isCreated = true;
     this.projectService.createProject(p).then((success)=>{
-      this.router.navigate(['/ChartPage/']);
+      this.router.navigate(['/ChartPage/' + success]);
     }, fail=>{
 
     });

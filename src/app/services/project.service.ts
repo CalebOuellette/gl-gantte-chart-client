@@ -94,22 +94,21 @@ export class ProjectService {
   }
 
 
-  public createProject(proj: ProjectProps): Promise<boolean> {
+  public createProject(proj: ProjectProps): Promise<string> {
     //TODO make one transaction
     //If some call fails we will end up with bad data
     return new Promise((resolve, reject) => {
       this.fireDb.list(this.PROJECTPATH).push(proj).then((success) => {
         this.loadProjectByID(success.key);
-        this.createProjectUser(success.key, true).then(success => {
-          this.project.update({ writter: success });
-          this.loadUser(success).then(success => {
-            resolve(true);
+        this.createProjectUser(success.key, true).then(userID => {
+          this.project.update({ writter: userID });
+          this.loadUser(userID).then(success => {
+            resolve(userID);
           });
         });
         this.createProjectUser(success.key, false).then(success => {
           this.project.update({ reader: success });
         });
-
       });
     });
   }
