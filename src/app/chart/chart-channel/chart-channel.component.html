@@ -1,3 +1,11 @@
+<div [ngStyle]="{ left: (nowOffset - 160) + 'px' }" class="channelName boldText">
+  <button (click)="taskCreateModal.show()" class="glButton" style="margin-right: 10px;">
+    Add task
+  </button> {{(channel | async).name}}
+
+</div>
+
+
 <div id="conatin">
   <div *ngFor="let item of taskList | async" [ngStyle]="{ left: (nowOffset + ( (nowDate.getTime() - item.startDate) / zoomScale) ) + 'px', 'background-color': item.color, 'width': (item.totalTime / zoomScale) + 'px' }"
     class="boxL task">
@@ -9,7 +17,9 @@
     <div (mousedown)="taskExpand(item, $event)" class="expandZone">
     </div>
   </div>
-  <div (click)="addTask(channel)" class="addButton" [ngStyle]="{ left: (nowOffset + 10) +'px'}">
-    +
-  </div>
 </div>
+
+
+<gl-modal #taskCreateModal>
+  <gl-task-create [channelID]="channelID" (onChannelCreate)="taskCreateModal.hide()"></gl-task-create>
+</gl-modal>

@@ -1,8 +1,10 @@
-import { Component, Input, OnInit, HostListener } from '@angular/core';
+import { Component, Input, OnInit, HostListener, ViewChild } from '@angular/core';
 import { ProjectService } from '../../services/project.service';
 import { TaskProps } from '../../classes/task';
 import { ChannelProps } from '../../classes/channel';
 import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { ModalComponent } from '../../../gl-primitives';
+
 
 @Component({
   selector: 'gl-chart-channel',
@@ -12,11 +14,13 @@ import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/d
 export class ChartChannelComponent implements OnInit {
 
 
+  @ViewChild("channelCreateModal") channelCreateModal: ModalComponent;
+
   public nowDate: Date = new Date(); //right now.
 
   private dragging: boolean = false; //if there is something being dragged.
   private dragItem: any; //the item being dragged.
-
+  private dragItemDB: FirebaseObjectObservable<TaskProps>;
   private last: MouseEvent; //last event to calc move distance
 
 
@@ -37,7 +41,7 @@ export class ChartChannelComponent implements OnInit {
   constructor(public projectService: ProjectService) { }
 
   ngOnInit() {
-    this.channel = this.projectService.fireDb.object(this.projectService.PROJECTPATH + this.projectService.projectid + '/chennels/' + this.channelID);
+    this.channel = this.projectService.fireDb.object(this.projectService.PROJECTPATH + this.projectService.projectid + '/channels/' + this.channelID);
     this.taskList = this.projectService.fireDb.list(this.projectService.PROJECTPATH + this.projectService.projectid + '/tasks', {
       query: {
         orderByChild: 'channelID',
@@ -50,37 +54,45 @@ export class ChartChannelComponent implements OnInit {
 
   @HostListener('window:mouseup')
   onMouseup(event: MouseEvent) {
+    if (this.dragItem) {      
+      this.syncTaskPosition(this.dragItem);
+      this.dragItem = null;
+    }
+
     this.dragging = false;
-    this.dragItem = null;
+
     this.dragEventType = 0;
   }
 
   @HostListener('window:mouseleave')
   onMouseLeave(event: MouseEvent) {
+    if (this.dragItem) {
+      this.syncTaskPosition(this.dragItem);
+      this.dragItem = null;
+    }
     this.dragging = false;
-    this.dragItem = null;
     this.dragEventType = 0;
   }
+
+
 
   @HostListener('window:mousemove', ['$event'])
   onMousemove(event: MouseEvent) {
     if (this.dragging && this.dragEventType && this.projectService.userCanWrite) {
-      var dbTask = this.projectService.fireDb.object(this.projectService.PROJECTPATH + this.projectService.projectid + '/tasks/' + this.dragItem.$key);
+
       if (this.dragEventType == 1) {
-        dbTask.update({ totalTime: this.dragItem.totalTime + ((event.clientX - this.last.clientX) * this.zoomScale)}); //update Server
-        this.dragItem.totalTime = this.dragItem.totalTime + ((event.clientX - this.last.clientX) * this.zoomScale); //update Local
+
+        let newTime = this.dragItem.totalTime + ((event.clientX - this.last.clientX) * this.zoomScale);
+
+        this.dragItem.totalTime = newTime; //update Local        
         if (this.dragItem.totalTime < (this.zoomScale * 40)) {
           this.dragItem.totalTime = this.zoomScale * 40;
-        } else {
-          //   this.dragItem.parentChannel.adjusTasksAfter(this.dragItem, ((event.clientX - this.last.clientX) * this.zoomScale));
         }
         this.last = event;
       }
       else if (this.dragEventType == 2) {
-         dbTask.update({ startDate: this.dragItem.startDate - ((event.clientX - this.last.clientX) * this.zoomScale)});
-    
-        this.dragItem.startDate = this.dragItem.startDate - ((event.clientX - this.last.clientX) * this.zoomScale);
-        //   this.dragItem.parentChannel.adjustAllTaskTimes(((event.clientX - this.last.clientX) * this.zoomScale));
+        let newTime = this.dragItem.startDate - ((event.clientX - this.last.clientX) * this.zoomScale);
+        this.dragItem.startDate = newTime;
         this.last = event;
       }
       else if (this.dragEventType == 3) {
@@ -90,10 +102,20 @@ export class ChartChannelComponent implements OnInit {
     }
   }
 
+  public syncTaskPosition(task: any) {
+    let db = this.projectService.fireDb.object(this.projectService.PROJECTPATH + this.projectService.projectid + '/tasks/' + this.dragItem.$key);
+    db.update({ startDate: this.dragItem.startDate, totalTime: this.dragItem.totalTime });
+    console.log("update saved")
+  }
 
-  public taskExpand(task: TaskProps, event: MouseEvent) {
+  public beginTaskDragEvent(task: TaskProps) {
     this.dragItem = task;
     this.dragging = true;
+  }
+
+
+  public taskExpand(task: TaskProps, event: MouseEvent) {
+    this.beginTaskDragEvent(task);
     this.last = event;
     this.dragEventType = 1;
     event.stopPropagation();
@@ -101,8 +123,7 @@ export class ChartChannelComponent implements OnInit {
 
 
   public taskMove(task: TaskProps, event: MouseEvent) {
-    this.dragItem = task;
-    this.dragging = true;
+    this.beginTaskDragEvent(task);
     this.last = event;
     this.dragEventType = 2;
     event.stopPropagation();
@@ -117,10 +138,10 @@ export class ChartChannelComponent implements OnInit {
 
 
 
-  public addTask(afterTask?: TaskProps) {    
-    if(afterTask){
+  public addTask(afterTask?: TaskProps) {
+    if (afterTask) {
 
-    }else{
+    } else {
       var t: TaskProps = { name: "new Name", color: "#005757", startDate: new Date().getTime(), totalTime: 345600000, channelID: this.channelID };
     }
   }

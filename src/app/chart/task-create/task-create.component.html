@@ -1,0 +1,20 @@
+<div id="channelCreate">
+  <div class="header">
+     Create Task 
+  </div>
+  <div class="subText">
+    A task is an item of work with associtated duration and start date.
+  </div>
+  <div id="controls">
+  
+    <input type="text" placeholder="Name" [(ngModel)]="task.name" style="width: 300px" class="glInput-inverse">
+    <input type="number" placeholder="Hours" [(ngModel)]="hours" style="width: 300px" class="glInput-inverse">
+    <input type="datetime-local"[(ngModel)]="startDate">
+
+  </div>
+  <div id="createSection">
+    <button (click)="addTask()" class="glButton-inverse">
+    Create my task
+  </button>
+  </div>
+</div>

@@ -25,6 +25,7 @@ import { FltrChannelIdPipe } from './pipes/fltr-channel-id/fltr-channel-id.pipe'
 import { ChartChannelComponent } from './chart/chart-channel/chart-channel.component';
 import { StringToDatePipe } from './pipes/string-to-date/string-to-date.pipe';
 import { ChannelCreateComponent } from './chart/channel-create/channel-create.component';
+import { TaskCreateComponent } from './chart/task-create/task-create.component';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { ChannelCreateComponent } from './chart/channel-create/channel-create.co
     TestPageComponent,
     FltrChannelIdPipe,
     ChartChannelComponent,    
-    StringToDatePipe, ChannelCreateComponent    
+    StringToDatePipe, ChannelCreateComponent, TaskCreateComponent    
   ],
   imports: [
     BrowserModule,

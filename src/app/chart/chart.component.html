@@ -8,9 +8,7 @@
   </button>
 
   <div *ngFor="let channel of projectService.channels | async; let ix = index;" [ngStyle]="{ top: (90 * ix) + 100 + 'px' }" class="channel">
-    <div [ngStyle]="{ left: nowOffset + 'px' }" class="channelName boldText">
-      {{channel.name}}
-    </div>
+  
     <gl-chart-channel [nowOffset]="nowOffset" [zoomScale]="zoomScale" [channelID]="channel.$key"></gl-chart-channel>  
   </div>
 
