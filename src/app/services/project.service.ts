@@ -73,7 +73,7 @@ export class ProjectService {
 
   public loadUser(id: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      this.afAuth.auth.signInAnonymously().then(() => {
+
         this.user = this.fireDb.object(this.USERPATH + id);
         this.user.subscribe(success => {
           if (success.isCreated) {
@@ -86,10 +86,7 @@ export class ProjectService {
 
         });
 
-      }, fail => {
-        reject("error loading user");
-        console.warn("failed to load user id:" + id);
-      });
+
     });
   }
 

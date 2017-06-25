@@ -26,7 +26,7 @@
   <div *ngFor="let channel of projectService.channels | async; let ix = index;" [ngStyle]="{ top: (90 * ix) + 130 + 'px' }"
     class="channel">
 
-    <gl-chart-channel [nowOffset]="nowOffset" [zoomScale]="zoomScale" [channelID]="channel.$key"></gl-chart-channel>
+    <gl-chart-channel [dragging]="dragging" [nowOffset]="nowOffset" [zoomScale]="zoomScale" [channelID]="channel.$key"></gl-chart-channel>
   </div>
 
 </div>

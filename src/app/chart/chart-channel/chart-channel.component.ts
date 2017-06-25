@@ -16,9 +16,11 @@ export class ChartChannelComponent implements OnInit {
 
   @ViewChild("channelCreateModal") channelCreateModal: ModalComponent;
 
+  @ViewChild("taskInfoModal") taskInfoModal: ModalComponent;
+
   public nowDate: Date = new Date(); //right now.
 
-  private dragging: boolean = false; //if there is something being dragged.
+  @Input() public dragging: boolean = false; //if there is something being dragged.
   private dragItem: any; //the item being dragged.
   private dragItemDB: FirebaseObjectObservable<TaskProps>;
   private last: MouseEvent; //last event to calc move distance
@@ -95,10 +97,7 @@ export class ChartChannelComponent implements OnInit {
         this.dragItem.startDate = newTime;
         this.last = event;
       }
-      else if (this.dragEventType == 3) {
-        this.nowOffset = (this.nowOffset + (event.clientX - this.last.clientX));
-        this.last = event;
-      }
+    
     }
   }
 
@@ -126,13 +125,6 @@ export class ChartChannelComponent implements OnInit {
     this.beginTaskDragEvent(task);
     this.last = event;
     this.dragEventType = 2;
-    event.stopPropagation();
-  }
-
-  public timelineMove(event: MouseEvent) {
-    this.dragging = true;
-    this.last = event;
-    this.dragEventType = 3;
     event.stopPropagation();
   }
 

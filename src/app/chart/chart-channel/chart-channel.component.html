@@ -8,10 +8,11 @@
 
 <div id="conatin">
   <div *ngFor="let item of taskList | async" [ngStyle]="{ left: (nowOffset - ( (nowDate.getTime() - item.startDate) / zoomScale) ) + 'px', 'background-color': item.color, 'width': (item.totalTime / zoomScale) + 'px' }"
-    class="boxL task" [ngClass]=" {transitionTiming: dragging}">
+    class="boxL task" [ngClass]=" {transitionTiming: !dragging}"> 
     <div (mousedown)="taskMove(item, $event)" class="dragZone">
       <div class="boxLTitle" *ngIf="!channel.currentTask || channel.currentTask.id != item.id">
-        T: {{item.name}}
+        <span (click)="taskInfoModal.show()"> {{item.name}}</span>
+
       </div>
     </div>
     <div (mousedown)="taskExpand(item, $event)" class="expandZone">
@@ -24,7 +25,7 @@
   <gl-task-create [channelID]="channelID" (onChannelCreate)="taskCreateModal.hide()"></gl-task-create>
 </gl-modal>
 
- 
+
 <gl-modal #taskInfoModal>
-  <gl-task-info></gl-task-info> 
+  <gl-task-info></gl-task-info>
 </gl-modal>
