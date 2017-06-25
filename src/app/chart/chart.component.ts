@@ -49,11 +49,11 @@ export class ChartComponent implements OnInit {
   
   @HostListener('mousewheel', ['$event'])
   onWheel(event: WheelEvent) {
-   if(event.deltaY > 0){
+   if(event.deltaY < 0){
      if((this.zoomScale / 2) > 1600){
       this.zoomScale = this.zoomScale / 2;
      }    
-   }else if(event.deltaY < 0){
+   }else if(event.deltaY > 0){
     if((this.zoomScale * 2) < 25000000){
       this.zoomScale = this.zoomScale * 2;
      }
