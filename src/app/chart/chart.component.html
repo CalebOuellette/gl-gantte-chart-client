@@ -20,7 +20,7 @@
 
   <div id="verticalNowLine" [ngStyle]="{ left: nowOffset + 'px' }"></div>
   <button class="glButton" [ngStyle]="{ left: (nowOffset + 8) + 'px' }" (click)="channelCreateModal.show()">
-    Add Channel
+    +Channel
   </button>
 
   <div *ngFor="let channel of projectService.channels | async; let ix = index;" [ngStyle]="{ top: (90 * ix) + 130 + 'px' }"

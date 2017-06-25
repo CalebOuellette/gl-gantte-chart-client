@@ -1,14 +1,14 @@
-<div [ngStyle]="{ left: (nowOffset - 110) + 'px' }" class="channelName boldText">
-  <button (click)="taskCreateModal.show()" class="glButton" style="margin-right: 10px;">
-    Add task
+<div [ngStyle]="{ left: (nowOffset - 85) + 'px' }" class="channelName boldText">
+  <button (click)="taskCreateModal.show()" class="glButton" style="margin-right: 14px;">
+    +Task
   </button> {{(channel | async).name}}
 
 </div>
 
 
 <div id="conatin">
-  <div *ngFor="let item of taskList | async" [ngStyle]="{ left: (nowOffset + ( (nowDate.getTime() - item.startDate) / zoomScale) ) + 'px', 'background-color': item.color, 'width': (item.totalTime / zoomScale) + 'px' }"
-    class="boxL task">
+  <div *ngFor="let item of taskList | async" [ngStyle]="{ left: (nowOffset - ( (nowDate.getTime() - item.startDate) / zoomScale) ) + 'px', 'background-color': item.color, 'width': (item.totalTime / zoomScale) + 'px' }"
+    class="boxL task" [ngClass]=" {transitionTiming: dragging}">
     <div (mousedown)="taskMove(item, $event)" class="dragZone">
       <div class="boxLTitle" *ngIf="!channel.currentTask || channel.currentTask.id != item.id">
         T: {{item.name}}
@@ -24,7 +24,7 @@
   <gl-task-create [channelID]="channelID" (onChannelCreate)="taskCreateModal.hide()"></gl-task-create>
 </gl-modal>
 
-
+ 
 <gl-modal #taskInfoModal>
-  <gl-task-info ></gl-task-info>
+  <gl-task-info></gl-task-info> 
 </gl-modal>

@@ -91,7 +91,7 @@ export class ChartChannelComponent implements OnInit {
         this.last = event;
       }
       else if (this.dragEventType == 2) {
-        let newTime = this.dragItem.startDate - ((event.clientX - this.last.clientX) * this.zoomScale);
+        let newTime = this.dragItem.startDate + ((event.clientX - this.last.clientX) * this.zoomScale);
         this.dragItem.startDate = newTime;
         this.last = event;
       }
