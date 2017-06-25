@@ -11,7 +11,7 @@
     class="boxL task" [ngClass]=" {transitionTiming: !dragging}"> 
     <div (mousedown)="taskMove(item, $event)" class="dragZone">
       <div class="boxLTitle" *ngIf="!channel.currentTask || channel.currentTask.id != item.id">
-        <span (click)="taskInfoModal.show()"> {{item.name}}</span>
+        <span (click)="showTaskModal(item)"> {{item.name}}</span>
 
       </div>
     </div>
@@ -27,5 +27,5 @@
 
 
 <gl-modal #taskInfoModal>
-  <gl-task-info></gl-task-info>
+  <gl-task-info [task]="selectedTask"></gl-task-info>
 </gl-modal>

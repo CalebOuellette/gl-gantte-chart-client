@@ -1,3 +1,12 @@
-<p>
-  task-info works!
-</p>
+<div id="task" *ngIf="task">
+ <div class="header">
+     <span [ngStyle]="{color: task.color}">{{task.name}}</span>
+  </div>
+  <div class="subText">
+    Start Date: <br>
+    Total Time: <br>
+    Time Left: <br>
+    Percent Complete: <br>
+    Info: {{task.description}} <br>
+  </div>
+</div>

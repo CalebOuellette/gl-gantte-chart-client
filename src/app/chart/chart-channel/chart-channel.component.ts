@@ -34,7 +34,7 @@ export class ChartChannelComponent implements OnInit {
 
   public taskList: FirebaseListObservable<TaskProps[]>;
 
-
+  public selectedTask: TaskProps;
 
   @Input() channelID: string;
 
@@ -128,7 +128,10 @@ export class ChartChannelComponent implements OnInit {
     event.stopPropagation();
   }
 
-
+  public showTaskModal(task: TaskProps){
+   this.selectedTask = task;
+   this.taskInfoModal.show();
+  }
 
 
 }
