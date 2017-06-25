@@ -31,6 +31,9 @@ export class ChartComponent implements OnInit {
 
   public zoomScale: number = 1000000; //MS per Pixel http://demo.ganttelope.com/ChartPage/-KnMo0iGeWpmOD-LkKnY
 
+  private zoomMin: number = 25000000; //most zoomed out
+  private zoomMax: number = 1600; //most zoomed in
+
   public dragEventType: number = 0; //TODO make an enum. this is the type of dragg happening. 
 
 
@@ -40,6 +43,22 @@ export class ChartComponent implements OnInit {
 
 
   ngOnInit() {
+  }
+
+
+  
+  @HostListener('mousewheel', ['$event'])
+  onWheel(event: WheelEvent) {
+   if(event.deltaY > 0){
+     if((this.zoomScale / 5) > 1600){
+      this.zoomScale = this.zoomScale / 5;
+     }    
+   }else if(event.deltaY < 0){
+    if((this.zoomScale * 2) < 25000000){
+      this.zoomScale = this.zoomScale * 2;
+     }
+   }
+   console.log(this.zoomScale);
   }
 
 

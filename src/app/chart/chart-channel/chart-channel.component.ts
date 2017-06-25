@@ -52,6 +52,8 @@ export class ChartChannelComponent implements OnInit {
     });
   }
 
+  
+
 
 
   @HostListener('window:mouseup')
