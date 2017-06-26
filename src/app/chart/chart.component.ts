@@ -21,7 +21,6 @@ export class ChartComponent implements OnInit {
 
   public channels: FirebaseListObservable<ChannelProps[]>; //list of channels 
 
-
   public dragging: boolean = false; //if there is something being dragged.
   
   private last: MouseEvent; //last event to calc move distance
@@ -69,6 +68,14 @@ export class ChartComponent implements OnInit {
     this.dragEventType = 0;
   }
 
+@HostListener('window:"dragend"')
+  onDragend(event: DragEvent) {
+    this.dragging = false;   
+    this.dragEventType = 0;
+  }
+
+  
+
   @HostListener('window:mouseleave')
   onMouseLeave(event: MouseEvent) {
     this.dragging = false;
@@ -87,6 +94,7 @@ export class ChartComponent implements OnInit {
   }
 
 
+  
 
 
   public timelineMove(event: MouseEvent) {
