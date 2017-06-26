@@ -3,12 +3,6 @@
     <div class="header">
       {{(projectService.project | async).name}}
     </div>
-    <button class="glButton" (click)="zoomScale = zoomScale / 10">
-    Zoom in
-  </button>
-    <button class="glButton" (click)="zoomScale = zoomScale * 10">
-    Zoom out
-  </button>
 
     <button class="glButton" (click)="linksModal.show()">
   Get Links
