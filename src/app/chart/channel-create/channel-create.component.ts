@@ -10,21 +10,21 @@ import { ChannelProps } from '../../classes/channel';
 export class ChannelCreateComponent implements OnInit {
 
  
-  public channel: ChannelProps;
+  public channel: ChannelProps = new ChannelProps();;
   
   @Output() public onChannelCreate: EventEmitter<string> = new EventEmitter();
 
   constructor(public projectService: ProjectService) { }
 
-  ngOnInit() {
-    this.channel = new ChannelProps();
+  ngOnInit() { 
   }
 
   public addChannel(): void{    
     if(this.projectService.isLoaded){
-         
+        
       this.projectService.channels.push(this.channel).then(success =>{
         this.onChannelCreate.emit(success.key);
+        this.channel = new ChannelProps();
       });
     }      
   }
