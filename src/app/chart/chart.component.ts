@@ -26,7 +26,9 @@ export class ChartComponent implements OnInit {
   private last: MouseEvent; //last event to calc move distance
 
 
-  public nowOffset: number = 325; //offset of the now point.
+
+  private _defaultNowOffset = 325;
+  public nowOffset: number = this._defaultNowOffset; //offset of the now point.
 
   public zoomScale: number = 1000000; //MS per Pixel http://demo.ganttelope.com/ChartPage/-KnMo0iGeWpmOD-LkKnY
 
@@ -106,6 +108,10 @@ export class ChartComponent implements OnInit {
 
   public addChannel(channel: ChannelProps) {
     this.channels.push(channel);
+  }
+
+  public returnToNow(){
+    this.nowOffset = this._defaultNowOffset;
   }
 
 }
