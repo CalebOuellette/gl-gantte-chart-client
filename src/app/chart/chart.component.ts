@@ -44,17 +44,17 @@ export class ChartComponent implements OnInit {
   ngOnInit() {
   }
 
-
+  private zoomSpeed: number = 1.1;
   
   @HostListener('mousewheel', ['$event'])
   onWheel(event: WheelEvent) {
    if(event.deltaY < 0){
-     if((this.zoomScale / 2) > 1600){
-      this.zoomScale = this.zoomScale / 2;
+     if((this.zoomScale / this.zoomSpeed) > 1600){
+      this.zoomScale = this.zoomScale / this.zoomSpeed;
      }    
    }else if(event.deltaY > 0){
-    if((this.zoomScale * 2) < 25000000){
-      this.zoomScale = this.zoomScale * 2;
+    if((this.zoomScale * this.zoomSpeed) < 25000000){
+      this.zoomScale = this.zoomScale * this.zoomSpeed;
      }
    }
    console.log(this.zoomScale);
