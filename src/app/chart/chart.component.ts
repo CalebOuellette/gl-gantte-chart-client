@@ -26,7 +26,9 @@ export class ChartComponent implements OnInit {
   private last: MouseEvent; //last event to calc move distance
 
 
-  public nowOffset: number = 325; //offset of the now point.
+
+  private _defaultNowOffset = 325;
+  public nowOffset: number = this._defaultNowOffset; //offset of the now point.
 
   public zoomScale: number = 1000000; //MS per Pixel http://demo.ganttelope.com/ChartPage/-KnMo0iGeWpmOD-LkKnY
 
@@ -44,15 +46,17 @@ export class ChartComponent implements OnInit {
   ngOnInit() {
   }
 
+  private zoomSpeed: number = 1.1;
+  
   @HostListener('mousewheel', ['$event'])
   onWheel(event: WheelEvent) {
    if(event.deltaY < 0){
-     if((this.zoomScale / 2) > 1600){
-      this.zoomScale = this.zoomScale / 2;
+     if((this.zoomScale / this.zoomSpeed) > 1600){
+      this.zoomScale = this.zoomScale / this.zoomSpeed;
      }    
    }else if(event.deltaY > 0){
-    if((this.zoomScale * 2) < 25000000){
-      this.zoomScale = this.zoomScale * 2;
+    if((this.zoomScale * this.zoomSpeed) < 25000000){
+      this.zoomScale = this.zoomScale * this.zoomSpeed;
      }
    }
    console.log(this.zoomScale);
@@ -102,6 +106,10 @@ export class ChartComponent implements OnInit {
 
   public addChannel(channel: ChannelProps) {
     this.channels.push(channel);
+  }
+
+  public returnToNow(){
+    this.nowOffset = this._defaultNowOffset;
   }
 
 }

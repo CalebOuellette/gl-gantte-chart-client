@@ -12,6 +12,7 @@ $taskHeight: 50px;
     z-index: 2;  
     user-select: none;
     left: 0;
+    overflow: hidden;
 }
 
 
@@ -21,7 +22,6 @@ $taskHeight: 50px;
     padding-bottom: 10px;
     padding-top: 10px; 
     height: $taskHeight + 15px;
-    overflow: hidden;
 }
 
 .percent{

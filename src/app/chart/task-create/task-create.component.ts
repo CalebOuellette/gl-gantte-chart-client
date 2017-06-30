@@ -8,7 +8,7 @@ import { TaskProps } from '../../classes/task';
 })
 export class TaskCreateComponent implements OnInit {
 
-  public task: TaskProps;
+  public task: TaskProps = new TaskProps();
   @Input() channelID: string;
   @Output() public onChannelCreate: EventEmitter<string> = new EventEmitter();
 
@@ -17,7 +17,7 @@ export class TaskCreateComponent implements OnInit {
   constructor(public projectService: ProjectService,  public color: ColorService) { }
 
   ngOnInit() {
-    this.task = new TaskProps();
+    
   }
 
   public addTask(): void{    
@@ -28,6 +28,7 @@ export class TaskCreateComponent implements OnInit {
       this.task.color = this.color.getRandomHexColor();
       this.projectService.tasks.push(this.task).then(success =>{
         this.onChannelCreate.emit(success.key);
+        this.task = new TaskProps();
       });
     }      
   }
