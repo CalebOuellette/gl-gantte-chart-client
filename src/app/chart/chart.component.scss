@@ -25,12 +25,11 @@ $taskHeight: 50px;
 }
 
 .channel{    
-    position: absolute;
+
     width: 100%;
     padding-bottom: 10px;
     padding-top: 10px; 
     height: $taskHeight + 15px;
-    overflow: hidden;
 }
 
 .percent{

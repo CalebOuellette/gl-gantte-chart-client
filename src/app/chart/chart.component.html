@@ -10,14 +10,15 @@
 
 
   </div>
+  <gl-time-scale  [nowOffset]="nowOffset" [zoomScale]="zoomScale"></gl-time-scale>
 
-
-  <div id="verticalNowLine" [ngStyle]="{ left: nowOffset + 'px' }"></div>
-  <button class="glButton" [ngStyle]="{ left: (nowOffset + 8) + 'px' }" (click)="channelCreateModal.show()">
+  <div id="verticalNowLine" [ngStyle]="{ left: (nowOffset / zoomScale) + 'px' }"></div>
+  <div>
+    <button class="glButton" [ngStyle]="{ left: ((nowOffset / zoomScale) + 8) + 'px' }" (click)="channelCreateModal.show()">
     +Channel
   </button>
-
-  <div *ngFor="let channel of projectService.channels | async; let ix = index;" [ngStyle]="{ top: (90 * ix) + 130 + 'px' }"
+  </div>
+  <div *ngFor="let channel of projectService.channels | async; let ix = index;" 
     class="channel">
 
     <gl-chart-channel [dragging]="dragging" [nowOffset]="nowOffset" [zoomScale]="zoomScale" [channelID]="channel.$key"></gl-chart-channel>

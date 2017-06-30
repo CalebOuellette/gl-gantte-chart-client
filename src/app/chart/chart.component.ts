@@ -44,8 +44,6 @@ export class ChartComponent implements OnInit {
   ngOnInit() {
   }
 
-
-  
   @HostListener('mousewheel', ['$event'])
   onWheel(event: WheelEvent) {
    if(event.deltaY < 0){
@@ -87,15 +85,13 @@ export class ChartComponent implements OnInit {
   onMousemove(event: MouseEvent) {
     if (this.dragging && this.dragEventType) {     
       if (this.dragEventType == 3) {
-        this.nowOffset = (this.nowOffset + (event.clientX - this.last.clientX));        
+        
+
+        this.nowOffset = this.nowOffset + ((event.clientX - this.last.clientX) * this.zoomScale);        
         this.last = event;
       }
     }
   }
-
-
-  
-
 
   public timelineMove(event: MouseEvent) {
     this.dragging = true;

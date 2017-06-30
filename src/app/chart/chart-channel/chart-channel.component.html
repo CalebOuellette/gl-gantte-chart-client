@@ -1,4 +1,4 @@
-<div [ngStyle]="{ left: (nowOffset - 85) + 'px' }" class="channelName boldText">
+<div [ngStyle]="{ left: ((nowOffset/zoomScale) - 85) + 'px' }" class="channelName boldText">
   <button (click)="taskCreateModal.show()" class="glButton" style="margin-right: 14px;">
     +Task
   </button> {{(channel | async).name}}
@@ -7,7 +7,7 @@
 
 
 <div id="conatin">
-  <div *ngFor="let item of taskList | async" [ngStyle]="{ left: (nowOffset - ( (nowDate.getTime() - item.startDate) / zoomScale) ) + 'px', 'background-color': item.color, 'width': (item.totalTime / zoomScale) + 'px' }"
+  <div *ngFor="let item of taskList | async" [ngStyle]="{ left: ((nowOffset  / zoomScale) - ( (nowDate.getTime() - item.startDate) / zoomScale) ) + 'px', 'background-color': item.color, 'width': (item.totalTime / zoomScale) + 'px' }"
     class="boxL task" [ngClass]=" {transitionTiming: !dragging}"> 
     <div (mousedown)="taskMove(item, $event)" class="dragZone">
       <div class="boxLTitle" *ngIf="!channel.currentTask || channel.currentTask.id != item.id">
