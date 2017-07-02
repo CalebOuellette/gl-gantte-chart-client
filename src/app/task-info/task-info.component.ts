@@ -9,9 +9,13 @@ export class TaskInfoComponent implements OnInit {
 
   @Input() task: TaskProps;
 
+  public nowDate: Date;
+
   constructor() { }
 
   ngOnInit() {
+    this.nowDate = new Date();
+
   }
 
 

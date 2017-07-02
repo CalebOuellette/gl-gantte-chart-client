@@ -1,12 +1,14 @@
 <div id="task" *ngIf="task">
- <div class="header">
-     <span [ngStyle]="{color: task.color}">{{task.name}}</span>
+  <div class="header">
+    <span>{{task.name}}</span>
+    <span id="percent">  {{((task.startDate - nowDate.getTime()) / task.totalTime)| percentRound | percent: '1.0-0' }}   </span>
   </div>
+  <div id="bar" [ngStyle]="{backgroundColor: task.color}">
+
+  </div>
+
   <div class="subText">
-    Start Date: <br>
-    Total Time: <br>
-    Time Left: <br>
-    Percent Complete: <br>
-    Info: {{task.description}} <br>
+    <textarea style="     box-sizing: border-box;" [(ngModel)]='task.description' rows="5" cols="55">                             
+</textarea>
   </div>
 </div>
