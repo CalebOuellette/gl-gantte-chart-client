@@ -1,14 +1,23 @@
 <div id="task" *ngIf="task">
-  <div class="header">
-    <span>{{task.name}}</span>
-    <span id="percent">  {{((task.startDate - nowDate.getTime()) / task.totalTime)| percentRound | percent: '1.0-0' }}   </span>
+  <div>
+    <span  class="header">{{task.name}}</span>
+    <span id="percent">   {{ (nowDate.getTime() - task.startDate) / task.totalTime | percentRound | percent: '1.0-0' }}  </span>
+   
   </div>
   <div id="bar" [ngStyle]="{backgroundColor: task.color}">
 
   </div>
+  <div id="dates">
+    {{task.startDate | date: 'medium'}} --> {{(task.startDate + task.totalTime) | date: 'medium'}}
+  </div>
+
 
   <div class="subText">
-    <textarea style="     box-sizing: border-box;" [(ngModel)]='task.description' rows="5" cols="55">                             
+    <textarea [(ngModel)]='task.description' rows="5" cols="54">                             
 </textarea>
+  </div>
+
+  <div id="controls">
+    copy delete
   </div>
 </div>
