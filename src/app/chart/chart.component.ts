@@ -10,7 +10,7 @@ import { ModalComponent } from '../../gl-primitives';
   selector: 'gl-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss'],
-  host: {'(window:scroll)': 'doSomething($event)'}
+  host: { '(window:scroll)': 'doSomething($event)' }
 })
 export class ChartComponent implements OnInit {
 
@@ -22,12 +22,12 @@ export class ChartComponent implements OnInit {
   public channels: FirebaseListObservable<ChannelProps[]>; //list of channels 
 
   public dragging: boolean = false; //if there is something being dragged.
-  
+
   private last: MouseEvent; //last event to calc move distance
 
 
 
-  private _defaultNowOffset = 325;
+  private _defaultNowOffset = 500000000;
   public nowOffset: number = this._defaultNowOffset; //offset of the now point.
 
   public zoomScale: number = 1000000; //MS per Pixel http://demo.ganttelope.com/ChartPage/-KnMo0iGeWpmOD-LkKnY
@@ -39,7 +39,7 @@ export class ChartComponent implements OnInit {
 
 
   constructor(public projectService: ProjectService) {
-       this.channels = projectService.channels;    
+    this.channels = projectService.channels;
   }
 
 
@@ -47,51 +47,53 @@ export class ChartComponent implements OnInit {
   }
 
   private zoomSpeed: number = 1.1;
-  
+
   @HostListener('mousewheel', ['$event'])
   onWheel(event: WheelEvent) {
-   if(event.deltaY < 0){
-     if((this.zoomScale / this.zoomSpeed) > 1600){
-      this.zoomScale = this.zoomScale / this.zoomSpeed;
-     }    
-   }else if(event.deltaY > 0){
-    if((this.zoomScale * this.zoomSpeed) < 25000000){
-      this.zoomScale = this.zoomScale * this.zoomSpeed;
-     }
-   }
-   console.log(this.zoomScale);
+    if (event.deltaY < 0) {
+      if ((this.zoomScale / this.zoomSpeed) > 1600) {
+        this.zoomScale = this.zoomScale / this.zoomSpeed;
+        this.nowOffset = this.nowOffset / this.zoomSpeed;
+      }
+    } else if (event.deltaY > 0) {
+      if ((this.zoomScale * this.zoomSpeed) < 25000000) {
+        this.zoomScale = this.zoomScale * this.zoomSpeed;
+        this.nowOffset = this.nowOffset * this.zoomSpeed;
+      }
+    }
+    
   }
 
 
   @HostListener('window:mouseup')
   onMouseup(event: MouseEvent) {
     this.dragging = false;
-   
+
     this.dragEventType = 0;
   }
 
-@HostListener('window:"dragend"')
+  @HostListener('window:"dragend"')
   onDragend(event: DragEvent) {
-    this.dragging = false;   
+    this.dragging = false;
     this.dragEventType = 0;
   }
 
-  
+
 
   @HostListener('window:mouseleave')
   onMouseLeave(event: MouseEvent) {
     this.dragging = false;
-   
+
     this.dragEventType = 0;
   }
 
   @HostListener('window:mousemove', ['$event'])
   onMousemove(event: MouseEvent) {
-    if (this.dragging && this.dragEventType) {     
+    if (this.dragging && this.dragEventType) {
       if (this.dragEventType == 3) {
-        
 
-        this.nowOffset = this.nowOffset + ((event.clientX - this.last.clientX) * this.zoomScale);        
+
+        this.nowOffset = this.nowOffset + ((event.clientX - this.last.clientX) * this.zoomScale);
         this.last = event;
       }
     }
@@ -108,7 +110,7 @@ export class ChartComponent implements OnInit {
     this.channels.push(channel);
   }
 
-  public returnToNow(){
+  public returnToNow() {
     this.nowOffset = this._defaultNowOffset;
   }
 
