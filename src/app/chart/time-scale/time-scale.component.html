@@ -1,3 +1,10 @@
-<p>
+<span>
+  Timeline:
+</span>
+<span class="item"  [ngStyle]="{ left: (nowOffset / zoomScale) + 'px' }">
   time-scale works!
-</p>
+</span>
+
+<span class="item" *ngFor="let item of markCount">
+  test
+</span>

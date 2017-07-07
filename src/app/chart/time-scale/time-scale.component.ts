@@ -7,8 +7,11 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TimeScaleComponent implements OnInit {
 
-@Input() nowOffset: number;
-@Input() zoomScale: number;
+  @Input() nowOffset: number;
+  @Input() zoomScale: number;
+
+  public markCount: Array<number> = [1, 2, 3, 4, 5];
+
 
   constructor() { }
 
