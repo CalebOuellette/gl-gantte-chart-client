@@ -35,7 +35,7 @@
       </div>
       <div>
        
-        <input placeholder="ProjectCode#" class="projectCode glInput" type="text" [(ngModel)]="projectCode"><br>
+        <input placeholder="ProjectCode#" class="projectCode glInput" type="text" (ngModelChange)="projectCodeChange($event)" [ngModel]="projectCode"><br>
          <div id="go" class="bold" *ngIf="projectCode.length === 20" (click)="projectCodeClick()">GO </div>
       </div>
       <div class="or bold">or</div>

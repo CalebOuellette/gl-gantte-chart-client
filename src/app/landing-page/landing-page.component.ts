@@ -14,11 +14,17 @@ export class LandingPageComponent implements OnInit {
   ngOnInit() {
   }
 
-  public projectCodeClick(){
+  public projectCodeClick() {
     //check if good code
     //redirect to page.
     this.router.navigate(['/ChartPage/' + this.projectCode]);
   }
 
-  
+  public projectCodeChange(code: string) { 
+    this.projectCode = code;
+    if(code.length === 20){
+        this.router.navigate(['/ChartPage/' + this.projectCode]);
+    }
+  }
+
 }
