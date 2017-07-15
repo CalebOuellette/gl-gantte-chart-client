@@ -1,4 +1,4 @@
-<div (mousedown)="timelineMove($event)" (scroll)="onScroll($event)" class="chart" *ngIf="(projectService.project | async)">
+<div (mousedown)="timelineMove($event)" (scroll)="onScroll($event)" id="chart" *ngIf="(projectService.project | async)">
   <div id="topBar">
     <div class="header">
       {{(projectService.project | async).name}}

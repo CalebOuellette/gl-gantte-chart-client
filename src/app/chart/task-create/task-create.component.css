@@ -12,3 +12,18 @@
     margin-bottom: 20px;
 }
 
+#colorSelect{
+   font-weight: 800;
+}
+
+.aColor{
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+    border: solid transparent;
+    outline:0;
+}
+
+.selectedColor{
+        border: solid black;
+}

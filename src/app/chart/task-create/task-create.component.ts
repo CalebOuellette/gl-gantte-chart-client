@@ -14,21 +14,25 @@ export class TaskCreateComponent implements OnInit {
 
   public hours: number;
   public startDate: string;
-  constructor(public projectService: ProjectService,  public color: ColorService) { }
+  constructor(public projectService: ProjectService,  public colorService: ColorService) { }
 
   ngOnInit() {
-    
+    this.task = new TaskProps();
+    this.task.color = '#' + this.colorService.colors[0];
+  }
+
+  public selectColor(color: string){
+    this.task.color = '#' + color;
   }
 
   public addTask(): void{    
     if(this.projectService.isLoaded){
       this.task.totalTime = this.hours * 60 * 60 * 1000;
       this.task.startDate = new Date(this.startDate).getTime();
-      this.task.channelID = this.channelID;
-      this.task.color = this.color.getRandomHexColor();
-      this.projectService.tasks.push(this.task).then(success =>{
-        this.onChannelCreate.emit(success.key);
-        this.task = new TaskProps();
+      this.task.channelID = this.channelID;            
+      this.projectService.tasks.push(this.task).then(success =>{ //push to project
+        this.onChannelCreate.emit(success.key); //emmit change
+        this.ngOnInit(); //reset component.
       });
     }      
   }

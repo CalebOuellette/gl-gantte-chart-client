@@ -10,6 +10,10 @@
     <input type="text" placeholder="Name" [(ngModel)]="task.name" style="width: 300px" class="glInput-inverse">
     <input type="number" placeholder="Hours" [(ngModel)]="hours" style="width: 300px" class="glInput-inverse">
     <input type="datetime-local"[(ngModel)]="startDate">
+    <div id="colorSelect">
+      <span>Color</span>
+      <button *ngFor="let color of colorService.colors" class="boxL aColor" (click)="selectColor(color)" [ngClass]="{selectedColor: (task.color === '#'+ color)}" [ngStyle]="{backgroundColor: '#'+ color}"></button>
+    </div>
 
   </div>
   <div id="createSection">
